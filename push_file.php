@@ -37,7 +37,7 @@ echo "<pre><code class='java'>".$data['content']."</code></pre>";*/
 /*$myFile = file_get_contents('http://www.example.com/');
 echo $myFile;*/
 
-include "includes/footer.php";
+
 
 
 
@@ -49,6 +49,10 @@ include "includes/footer.php";
         <input name="file" type="file" multiple />
     </div>
 </form>
+
+<?php
+include "includes/footer.php";
+?>
 
 
 
