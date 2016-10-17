@@ -15,3 +15,8 @@ footer {
 a {
     color: #1b8dbb;
 }
+
+.dropzone {
+    border:4px dodgerblue dashed;
+    border-radius:10px;
+}

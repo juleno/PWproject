@@ -18,7 +18,10 @@
                     <input type="password" name="pwd" placeholder="Mot de passe" class="form-control">
                 </div>
                 <button type="submit" class="btn btn-default">Connexion</button>
-                <a class="btn btn-primary">Inscription</a>
+                <a class="btn btn-primary" data-toggle="modal" data-target="#inscriptionModal">Inscription</a>
+
+
+
             </form>
         </div><!--/.navbar-collapse -->
     </div>

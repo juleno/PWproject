@@ -9,7 +9,8 @@
 require_once "api/classes/ConnDB.class.php";
 include "includes/header.php";
 
-$file = "C:\\Users\\Jules\\Desktop\\InsertionInteger.java";
+
+/*$file = "C:\\Users\\Jules\\Desktop\\InsertionInteger.java";
 echo "directory = ".$file;
 $contenu =file_get_contents($file);
 
@@ -30,7 +31,7 @@ $req->execute();
 
 $data = $req->single();
 
-echo "<pre><code class='java'>".$data['content']."</code></pre>";
+echo "<pre><code class='java'>".$data['content']."</code></pre>";*/
 
 
 /*$myFile = file_get_contents('http://www.example.com/');
@@ -39,4 +40,19 @@ echo $myFile;*/
 include "includes/footer.php";
 
 
+
+
 ?>
+
+<form action="abc.php" class="dropzone">
+    <div class="fallback">
+        <input name="file" type="file" multiple />
+    </div>
+</form>
+
+
+
+
+
+
+

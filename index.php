@@ -7,7 +7,7 @@ include "includes/header.php";
         <div class="container">
             <h1>Bienvenue !</h1>
             <p>Echangez vos compétences en programmation au sein d'un groupe.<br>Partagez vos fichiers, demandez de l'aide, des avis exterieurs et progressez !</p>
-            <p><a class="btn btn-primary btn-lg" href="#" role="button">Inscription &raquo;</a></p>
+            <p><a class="btn btn-primary btn-md" role="button" data-toggle="modal" data-target="#inscriptionModal">Inscription &raquo;</a></p>
         </div>
     </div>
 

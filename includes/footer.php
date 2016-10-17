@@ -40,5 +40,6 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
+<script src="js/dropzone.js"></script>
 </body>
 </html>
