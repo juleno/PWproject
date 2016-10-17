@@ -7,8 +7,9 @@
  */
 
 require_once "api/classes/ConnDB.class.php";
+include "includes/header.php";
 
-$file = "C:\\wamp64\\www\\PWproject\\InsertInteger.java";
+$file = "C:\\Users\\Jules\\Desktop\\InsertionInteger.java";
 echo "directory = ".$file;
 $contenu =file_get_contents($file);
 
@@ -21,16 +22,21 @@ $req->query("INSERT INTO file(id, iduser, extensionfile, publidate, content, nam
 $req->bind(":contenu",utf8_encode($contenu));
 $req->execute();
 
-$req->query("SELECT * FROM file WHERE id=15");
+$lastid=$req->lastInsertId();
+
+$req->query("SELECT * FROM file WHERE id=:id");
+$req->bind(":id", $lastid);
 $req->execute();
 
 $data = $req->single();
 
-echo "<pre>".$data['content']."</pre>";
+echo "<pre><code class='java'>".$data['content']."</code></pre>";
 
 
 /*$myFile = file_get_contents('http://www.example.com/');
 echo $myFile;*/
+
+include "includes/footer.php";
 
 
 ?>

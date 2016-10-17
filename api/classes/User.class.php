@@ -1,4 +1,5 @@
 <?php
+require_once "ConnDB.class.php";
 
     class User {
 
@@ -16,11 +17,12 @@
          * @param $bio
          * @param $inscridate
          */
-        public function __construct($id, $pseudo, $mail, $firstname, $lastname, $score, $mailvalide, $isadmin, $profilpic, $bio, $inscridate)
+        public function __construct($id, $pseudo, $mail, $pwd, $firstname, $lastname, $score, $mailvalide, $isadmin, $profilpic, $bio, $inscridate)
         {
             $this->id = $id;
             $this->pseudo = $pseudo;
             $this->mail = $mail;
+            $this->pwd = $pwd;
             $this->firstname = $firstname;
             $this->lastname = $lastname;
             $this->score = $score;
@@ -36,6 +38,18 @@
          */
         public function getJson() {
             return json_encode($this, JSON_NUMERIC_CHECK);
+        }
+
+        public function insertIntoDatabase() {
+            $req = new ConnDB();
+            $req->query("INSERT INTO user VALUES ('".implode("', '", (array) $this)."')");
+            $req->execute();
+            if (!empty($req->lastInsertId())) {
+                $this->id = $req->lastInsertId();
+                return true;
+            } else {
+                return false;
+            }
         }
 
     }
