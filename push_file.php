@@ -18,10 +18,10 @@ $contenu =file_get_contents($file);
 
 $req = new ConnDB();
 $req->query("INSERT INTO file(id, iduser, extensionfile, publidate, content, name) VALUES ('', '1', 'java', '14844559101', :contenu, 'FILE_ABC')");
-$req->bind(":contenu",$contenu);
+$req->bind(":contenu",utf8_encode($contenu));
 $req->execute();
 
-$req->query("SELECT * FROM file WHERE id=11");
+$req->query("SELECT * FROM file WHERE id=15");
 $req->execute();
 
 $data = $req->single();
