@@ -41,5 +41,39 @@
 <script src="js/bootstrap.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <script src="js/dropzone.js"></script>
+<script src="js/md5.js"></script>
+
+<!-- AJAX -->
+<script>
+    $(document).ready(function() {
+        $('.textlog').hide();
+
+        $('#loginForm').submit(function () {
+            var mail = $('#mail').val();
+            var pwd = $('#pwd').val();
+            var dataMail = 'mail=' + mail;
+            var dataPwd = '&pwd=' + calcMD5(pwd);
+            var dataString = dataMail + dataPwd;
+            console.log(dataPwd);
+
+            $.ajax({
+                type: 'POST',
+                url: 'api/connexion.php',
+                data: dataString,
+                success: function (data) {
+                    var responseData = jQuery.parseJSON(data)
+                    if (responseData.status == 1) {
+                        $('.textlog').fadeIn();
+                        $('.textlog').text(responseData.message);
+                    }
+                    else {
+                        location.reload();
+                    }
+                }
+            });
+            return false;
+        });
+    });
+</script>
 </body>
 </html>

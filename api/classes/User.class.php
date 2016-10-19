@@ -59,6 +59,34 @@ require_once "ConnDB.class.php";
         }
 
         /**
+         * @return bool
+         */
+        public function connexion() {
+            $req = new ConnDB();
+            $req->query("SELECT * FROM user WHERE mail = :mail AND pwd = :pwd");
+            $req->bind(":mail", $this->mail);
+            $req->bind(":pwd", $this->pwd);
+            $req->execute();
+            if ($req->rowCount() > 0) {
+                $data = $req->single();
+                $this->id = $data['id'];
+                $this->pseudo = $data['pseudo'];
+                $this->mail = $data['mail'];
+                $this->pwd = $data['pwd'];
+                $this->firstname = $data['firstname'];
+                $this->lastname = $data['lastname'];
+                $this->score = $data['score'];
+                $this->mailvalid = $data['mailvalid'];
+                $this->isadmin = $data['isadmin'];
+                $this->profilpic = $data['profilpic'];
+                $this->bio = $data['bio'];
+                $this->inscridate = $data['inscridate'];
+                return true;
+            }
+            return false;
+        }
+
+        /**
          * @return string
          */
         public function getJson() {

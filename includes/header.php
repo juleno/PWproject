@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (isset($_SESSION['login']) && $titlePage == "Accueil") {
+    header("Location: board.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>

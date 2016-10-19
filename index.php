@@ -1,9 +1,9 @@
 <?php
-$titlePage = "Index";
+$titlePage = "Accueil";
 include "includes/header.php";
 ?>
 
-    <div class="jumbotron">
+    <div class="jumbotron top">
         <div class="container">
             <h1>Bienvenue !</h1>
             <p>Echangez vos compétences en programmation au sein d'un groupe.<br>Partagez vos fichiers, demandez de l'aide, des avis exterieurs et progressez !</p>

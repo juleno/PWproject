@@ -1,5 +1,5 @@
 .top {
-    margin-top: 80px;
+    margin-top: 60px;
 }
 
 .footer-bottom {
@@ -19,4 +19,17 @@ a {
 .dropzone {
     border:4px dodgerblue dashed;
     border-radius:10px;
+}
+
+.textlog {
+    color: #ffffff;
+    margin-right: 10px;
+}
+
+.center {
+    text-align: center;
+}
+
+.profilpic {
+    height: 120px;
 }
