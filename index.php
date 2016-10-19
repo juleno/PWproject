@@ -14,17 +14,17 @@ include "includes/header.php";
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <img src="img/club.png" alt="Club privé ou public" class="img-rounded">
+                <img src="img/club.png" alt="Club privé ou public" class="img-rounded img-responsive">
                 <h2>Créez votre club</h2>
                 <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
             </div>
             <div class="col-md-4">
-                <img src="img/coloration.png" alt="Coloration syntaxique" class="img-rounded">
+                <img src="img/coloration.png" alt="Coloration syntaxique" class="img-rounded img-responsive">
                 <h2>Partagez vos fichiers</h2>
                 <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
             </div>
             <div class="col-md-4">
-                <img src="img/rencontre.png" alt="Rencontre entre développeurs" class="img-rounded">
+                <img src="img/rencontre.png" alt="Rencontre entre développeurs" class="img-rounded img-responsive">
                 <h2>Faites connaissance</h2>
                 <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
             </div>
