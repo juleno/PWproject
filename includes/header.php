@@ -1,7 +1,9 @@
 <?php
 session_start();
+
 if (isset($_SESSION['login']) && $titlePage == "Accueil") {
     header("Location: board.php");
+    exit();
 }
 ?>
 <!DOCTYPE html>

@@ -79,6 +79,33 @@ require_once "ConnDB.class.php";
             return false;
         }
 
+        public function addClub($id, $name, $iduser, $desc, $clubpic, $clubdate, $ispublic, $skill1, $skill2, $skill3) {
+            $req = new ConnDB();
+            $req->query("INSERT INTO club VALUES ('".$id."', '".$name."', '".$iduser."', '".$desc."', '".$clubpic."', '".$clubdate."', '".$ispublic."', '".$skill1."', '".$skill2."', '".$skill3."')");
+            $req->execute();
+        }
+
+
+        //Fonction pour liste les clubs, ne fonctionne pas (sort une ligne mais pb pour en sortir plusieurs)
+
+       /* public function findClubByUser()
+        {
+            $req = new ConnDB();
+            $req->query("SELECT * FROM club WHERE id IN (SELECT idclub FROM userclub WHERE iduser = :iduser)");
+            $req->bind(":iduser", $this->iduser);
+            $req->execute();
+            if ($req->rowCount() > 0) {
+                $data = $req->single();
+                $this->id = $data['id'];
+                $this->desc = $data['desc'];
+                $this->name = $data['name'];
+                echo $data['name'];
+                // return true;
+            } else {
+                echo "erreur";
+                // return false;
+            }
+        }    */
     }
 
 ?>

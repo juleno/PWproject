@@ -1,12 +1,12 @@
 <?php
-if (!isset($_GET['id']) || empty($_GET['id'])) {
+/*if (!isset($_GET['id']) || empty($_GET['id'])) {
     header("Location: /");
-}
+}*/
 require_once "api/classes/Club.class.php";
 $club = new Club($_GET['id'], '', '', '', '', '', '');
-if (!$club->getFromId()) {
+/*if (!$club->getFromId()) {
     header("Location: /");
-}
+}*/
 
 require_once "api/classes/User.class.php";
 $owner = new User($club->iduser, '', '', '', '', '', '', '', '', '', '', '');

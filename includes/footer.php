@@ -1,8 +1,8 @@
 <br><br>
 <footer>
-    <div class="container">
+    <!--<div class="container">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <h3>A propos</h3>
                 <ul class="list-group">
                     <li class="list-group-item"><a href="#">Lien 1</a></li>
@@ -11,30 +11,15 @@
                     <li class="list-group-item"><a href="#">Lien 4</a></li>
                 </ul>
             </div>
-            <div class="col-md-4">
-                <h3>Réseaux sociaux</h3>
-                <ul class="list-group">
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">Autre</a></li>
-                </ul>
-            </div>
-            <div class="col-md-4">
-                <h3>Accès rapide</h3>
-                <ul class="list-group">
-                    <li><a href="#">Lien 1</a></li>
-                    <li><a href="#">Lien 2</a></li>
-                    <li><a href="#">Lien 3</a></li>
-                </ul>
+            <div class="col-md-5">
+                <h3>Mentions légales</h3>
             </div>
         </div>
-    </div>
+    </div>-->
     <div class="footer-bottom">
-        <div class="container">
-            <br>
-            <p>Copyright &copy; <?php echo date('Y'); ?> - Tous droits réservés.</p>
-        </div>
+        <br><center><a href = "mentionslegales.php">Mentions Légales</a>     --   <a href = "apropos.php">A propos</a></br></br>Copyright &copy; <?php echo date('Y'); ?> - Tous droits réservés   </center><br>
     </div>
+
 </footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
@@ -42,6 +27,15 @@
 <script>hljs.initHighlightingOnLoad();</script>
 <script src="js/dropzone.js"></script>
 <script src="js/md5.js"></script>
+
+<!--<SCRIPT LANGUAGE="JavaScript">
+
+    function addField(){
+        var field = "<input type='text' class='form-control' /><br/>";
+        document.getElementById('fields').innerHTML += field;
+    }
+
+</SCRIPT>-->
 
 <!-- AJAX -->
 <script>
