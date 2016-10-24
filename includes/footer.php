@@ -27,6 +27,10 @@
 <script>hljs.initHighlightingOnLoad();</script>
 <script src="js/dropzone.js"></script>
 <script src="js/md5.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//select2.github.io/select2/select2-3.4.1/select2.js"></script>
+
+
 
 <!--<SCRIPT LANGUAGE="JavaScript">
 

@@ -13,21 +13,21 @@ require_once "api/classes/ConnDB.class.php";
             <div class="list-group">
                 <?php
 
-
-                    /*$club = new Club('', '', $_SESSION['login']['id'], '', '', '','');
-                    $reponse = $club->findClubByUser();
-
-                    /*while ($donnees = $club->findClubByUser()->fetch()){
-                        echo $club->name;
-                    }*/
-                    /*if ($club->findClubByUser()) {
-                        echo $club->name;
-                    }*/
+                    $req = new ConnDB();
+                    $req->query("SELECT *, club.id AS idclub FROM club, user WHERE user.id = club.iduser AND iduser = :iduser");
+                    $req->bind(":iduser", $_SESSION['login']['id']);
+                    $req->execute();
+                    if ($req->rowCount() > 0) {
+                        $data = $req->resultset();
+                        foreach ($data as $key=>$club) {
+                            $clubs[$key] = new Club($club['idclub'], $club['name'], $club['iduser'], $club['desc'], $club['clubpic'], $club['clubdate'], $club['ispublic']);
+                            echo '<a href="club.php?id='.$clubs[$key]->id.'" class="list-group-item">'.$clubs[$key]->name.'</a>';
+                        }
+                    } else {
+                        echo '<li class="list-group-item">Aucun club !</li>';
+                    }
 
                 ?>
-                <a href="#" class="list-group-item">Club 1</a>
-                <a href="#" class="list-group-item">Club 2</a>
-                <a href="#" class="list-group-item">Club 3</a>
                 <a href="#" class="list-group-item active" data-toggle="modal" data-target="#createClubModal">
                     <span class="glyphicon glyphicon-plus-sign"></span> Créer un club
                 </a>
@@ -61,6 +61,7 @@ require_once "api/classes/ConnDB.class.php";
                                     <input type="text" class="form-control" name ="skill2" id="skill2"><br>
                                     <input type="text" class="form-control" name ="skill3" id="skill3"><br>
 
+
                                 </div>
                         </div>
                         <div class="modal-footer">
@@ -75,6 +76,30 @@ require_once "api/classes/ConnDB.class.php";
 
             <h3>Clubs intégrés</h3>
             <div class="list-group">
+
+                <?php
+
+                $req = new ConnDB();
+                $req->query("SELECT *, club.id AS idclub FROM club, user WHERE user.id = club.iduser AND iduser = :iduser");
+                $req->bind(":iduser", $_SESSION['login']['id']);
+                $req->execute();
+                if ($req->rowCount() > 0) {
+                    $data = $req->resultset();
+                    foreach ($data as $key=>$club) {
+                        $clubs[$key] = new Club($club['idclub'], $club['name'], $club['iduser'], $club['desc'], $club['clubpic'], $club['clubdate'], $club['ispublic']);
+                        echo '<a href="club.php?id='.$clubs[$key]->id.'" class="list-group-item">'.$clubs[$key]->name.'</a>';
+                    }
+                } else {
+                    echo '<li class="list-group-item">Aucun club !</li>';
+                }
+
+
+
+                ?>
+
+
+
+
                 <a href="#" class="list-group-item">Club 1</a>
                 <a href="#" class="list-group-item">Club 2</a>
                 <a href="#" class="list-group-item">Club 3</a>
@@ -104,6 +129,9 @@ require_once "api/classes/ConnDB.class.php";
                                 <a href="club.php?id=9" class="list-group-item">Club 9</a>
                             </div>
                         </div>
+
+
+
 
 
 

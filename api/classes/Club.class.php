@@ -88,24 +88,23 @@ require_once "ConnDB.class.php";
 
         //Fonction pour liste les clubs, ne fonctionne pas (sort une ligne mais pb pour en sortir plusieurs)
 
-       /* public function findClubByUser()
+        public function findClubByUser()
         {
             $req = new ConnDB();
-            $req->query("SELECT * FROM club WHERE id IN (SELECT idclub FROM userclub WHERE iduser = :iduser)");
+            $req->query("SELECT * FROM club, user WHERE user.id = club.iduser AND iduser = :iduser");
             $req->bind(":iduser", $this->iduser);
             $req->execute();
             if ($req->rowCount() > 0) {
                 $data = $req->single();
-                $this->id = $data['id'];
-                $this->desc = $data['desc'];
+
                 $this->name = $data['name'];
-                echo $data['name'];
-                // return true;
+
+                //echo $data;
+                return true;
             } else {
-                echo "erreur";
-                // return false;
+                return false;
             }
-        }    */
+        }
     }
 
 ?>
