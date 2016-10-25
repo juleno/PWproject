@@ -3,6 +3,7 @@
 $titlePage = "Board";
 include "includes/header.php";
 require "api/classes/Club.class.php";
+require "api/classes/Skill.class.php";
 require_once "api/classes/ConnDB.class.php";
 
 ?>
@@ -11,23 +12,27 @@ require_once "api/classes/ConnDB.class.php";
         <div class="col-md-9">
             <h3>Mes clubs</h3>
             <div class="list-group">
+
+                <p style="overflow:auto;max-height: 250px;">
                 <?php
 
                     $req = new ConnDB();
-                    $req->query("SELECT *, club.id AS idclub FROM club, user WHERE user.id = club.iduser AND iduser = :iduser");
+                    $req->query("SELECT DISTINCT*, club.id AS idclub FROM club, user WHERE user.id = club.iduser AND iduser = :iduser");
                     $req->bind(":iduser", $_SESSION['login']['id']);
                     $req->execute();
                     if ($req->rowCount() > 0) {
                         $data = $req->resultset();
                         foreach ($data as $key=>$club) {
                             $clubs[$key] = new Club($club['idclub'], $club['name'], $club['iduser'], $club['desc'], $club['clubpic'], $club['clubdate'], $club['ispublic']);
-                            echo '<a href="club.php?id='.$clubs[$key]->id.'" class="list-group-item">'.$clubs[$key]->name.'</a>';
+                            echo '<a href="club.php?id='.$clubs[$key]->id.'" class="list-group-item"><span class="glyphicon glyphicon-question-sign"></span>  ' .$clubs[$key]->name.'</a>';
                         }
                     } else {
                         echo '<li class="list-group-item">Aucun club !</li>';
                     }
 
                 ?>
+                    </p>
+
                 <a href="#" class="list-group-item active" data-toggle="modal" data-target="#createClubModal">
                     <span class="glyphicon glyphicon-plus-sign"></span> Créer un club
                 </a>
@@ -39,14 +44,21 @@ require_once "api/classes/ConnDB.class.php";
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel"><center><b>Nouveau club</b></center></h4>
+                            <h4 class="modal-title" id="myModalLabel"><center><b>Création d'un nouveau club</b></center></h4>
                         </div>
                         <div class="modal-body">
                             <form method="POST" action="newclub.php">
                                 <div class="form-group">
+
                                     <center>
-                                        <input type= "radio" name="statut" value="1" checked> Club public<br>
-                                        <input type= "radio" name="statut" value="0"> Club privé<br>
+                                        <div class="btn-group" data-toggle="buttons">
+                                            <label class="btn btn-primary active">
+                                                <input type="radio" name="statut" id="statutPublic" value="1" autocomplete="off" checked> Club public
+                                            </label>
+                                            <label class="btn btn-primary">
+                                                <input type="radio" name="statut" id="statutPrive" value ="0" autocomplete="off"> Club privé
+                                            </label>
+                                        </div>
                                     </center>
 
 
@@ -56,12 +68,34 @@ require_once "api/classes/ConnDB.class.php";
                                     <label for="comment">Description (500 carac. max):</label>
                                     <textarea class="form-control" rows="7" id="comment" name="desc" maxlength="500" required></textarea><br>
 
-                                    <label for="name">Compétences principales requises:</label>
-                                    <input type="text" class="form-control" name ="skill1" id="skill1" required><br>
+                                    <label for="name">Compétences requises:</label>
+                                    <!--<input type="text" class="form-control" name ="skill1" id="skill1" required><br>
                                     <input type="text" class="form-control" name ="skill2" id="skill2"><br>
-                                    <input type="text" class="form-control" name ="skill3" id="skill3"><br>
+                                    <input type="text" class="form-control" name ="skill3" id="skill3"><br>-->
 
+                                    <div class="modal-body">
+                                        <div class="row">
 
+                                    <?php
+
+                                    $req = new ConnDB();
+                                    $req->query("SELECT * FROM skill");
+                                    $req->execute();
+                                    if ($req->rowCount() > 0) {
+                                        $data = $req->resultset();
+                                        foreach ($data as $key=>$skill) {
+                                            $skill[$key] = new Skill($skill['id'], $skill['name'], $skill['desc'], $skill['category']);
+                                            //echo '<a href="club.php?id='.$skill[$key]->id.'" class="list-group-item">'.$skill[$key]->name.'</a>';
+                                           echo ' <div class="col-md-4"><input type="checkbox" id="'.$skill[$key]->id.'" value="'.$skill[$key]->id.'"> '.$skill[$key]->name.'</div>';
+                                        }
+                                    } else {
+                                        echo '<li class="list-group-item">Aucune compétence connue</li>';
+                                    }
+
+                                    ?>
+
+                                        </div>
+                                    </div>
                                 </div>
                         </div>
                         <div class="modal-footer">
@@ -76,33 +110,28 @@ require_once "api/classes/ConnDB.class.php";
 
             <h3>Clubs intégrés</h3>
             <div class="list-group">
+                <p style="overflow:auto;max-height: 250px;">
 
                 <?php
 
                 $req = new ConnDB();
-                $req->query("SELECT *, club.id AS idclub FROM club, user WHERE user.id = club.iduser AND iduser = :iduser");
+                $req->query("SELECT DISTINCT club.* FROM club, userclub WHERE userclub.idclub = club.id AND userclub.iduser = :iduser");
                 $req->bind(":iduser", $_SESSION['login']['id']);
                 $req->execute();
                 if ($req->rowCount() > 0) {
                     $data = $req->resultset();
                     foreach ($data as $key=>$club) {
-                        $clubs[$key] = new Club($club['idclub'], $club['name'], $club['iduser'], $club['desc'], $club['clubpic'], $club['clubdate'], $club['ispublic']);
-                        echo '<a href="club.php?id='.$clubs[$key]->id.'" class="list-group-item">'.$clubs[$key]->name.'</a>';
+                        $clubs[$key] = new Club($club['id'], $club['name'], $club['iduser'], $club['desc'], $club['clubpic'], $club['clubdate'], $club['ispublic']);
+                        echo '<a href="club.php?id='.$clubs[$key]->id.'" class="list-group-item" ><span class="glyphicon glyphicon-question-sign" ></span> '. $clubs[$key]->name.'</a>';
                     }
                 } else {
                     echo '<li class="list-group-item">Aucun club !</li>';
                 }
 
-
-
                 ?>
 
+                    </p>
 
-
-
-                <a href="#" class="list-group-item">Club 1</a>
-                <a href="#" class="list-group-item">Club 2</a>
-                <a href="#" class="list-group-item">Club 3</a>
                 <a href="#" class="list-group-item active" data-toggle="modal" data-target="#listClubs">
                     <span class="glyphicon glyphicon-search"></span> Explorer les clubs publics
                 </a>
@@ -118,15 +147,30 @@ require_once "api/classes/ConnDB.class.php";
                         </div>
                         <div class="modal-body">
                             <div class="list-group">
-                                <a href="club.php?id=1" class="list-group-item">Club 1</a>
-                                <a href="club.php?id=2" class="list-group-item">Club 2</a>
-                                <a href="club.php?id=3" class="list-group-item">Club 3</a>
-                                <a href="club.php?id=4" class="list-group-item">Club 4</a>
-                                <a href="club.php?id=5" class="list-group-item">Club 5</a>
-                                <a href="club.php?id=6" class="list-group-item">Club 6</a>
-                                <a href="club.php?id=7" class="list-group-item">Club 7</a>
-                                <a href="club.php?id=8" class="list-group-item">Club 8</a>
-                                <a href="club.php?id=9" class="list-group-item">Club 9</a>
+
+                                <?php
+
+                                $req = new ConnDB();
+                                $req->query("SELECT * FROM club WHERE ispublic = 1 AND id NOT IN (SELECT club.id FROM club, userclub WHERE userclub.idclub = club.id AND userclub.iduser = 66)");
+                                $req->bind(":iduser", $_SESSION['login']['id']);
+                                $req->execute();
+                                if ($req->rowCount() > 0) {
+                                    $data = $req->resultset();
+                                    foreach ($data as $key=>$club) {
+                                        $clubs[$key] = new Club($club['id'], $club['name'], $club['iduser'], $club['desc'], $club['clubpic'], $club['clubdate'], $club['ispublic']);
+                                        echo '<a href="club.php?id='.$clubs[$key]->id.'" class="list-group-item"><span class="glyphicon glyphicon-question-sign"></span> ' .$clubs[$key]->name.'</a>';
+                                    }
+                                } else {
+                                    echo '<li class="list-group-item">Aucun club !</li>';
+                                }
+
+                                ?>
+
+
+
+
+
+
                             </div>
                         </div>
 
