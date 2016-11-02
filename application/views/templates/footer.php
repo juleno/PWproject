@@ -48,12 +48,12 @@
 <script>
     $(document).ready(function() {
 
-        $(function () {
-            $('[data-toggle="popover"]').popover({
-                html: true,
-                content: $('#notifcenter').html()
-            })
-        })
+        $('[data-toggle="popover"]').popover({
+            html: true,
+            content: $('#notifcenter').html()
+        });
+
+        refreshActivities();
 
         var offsetFn = function () {
             return $('#sidebar').position().top;
@@ -90,6 +90,17 @@
             return false;
         });
     });
+
+    function refreshActivities() {
+        $.ajax({
+            url: "<?php echo base_url() ?>activity/last/<?php echo $login['id'] ?>",
+            success: function (html) {
+                lastactivities = document.getElementById("liveactivities");
+                lastactivities.innerHTML = html;
+            }
+        });
+    }
+    ;
 </script>
 </body>
 </html>

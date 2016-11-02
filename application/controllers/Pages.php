@@ -11,7 +11,6 @@ class Pages extends CI_Controller
             // Whoops, we don't have a page for that!
             show_404();
         }
-
         if ($this->session->has_userdata('login')) {
             $data['login'] = $this->session->userdata('login');
         }

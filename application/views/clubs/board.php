@@ -152,6 +152,13 @@
             </div>
             <h4>Mes amis</h4>
             <h4>Dernières activités</h4>
+            <table id="liveactivities" class="table">
+                <script>
+                    setInterval(function () {
+                        refreshActivities();
+                    }, 5000);
+                </script>
+            </table>
         </div>
     </div>
 </div>
