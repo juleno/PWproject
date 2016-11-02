@@ -17,8 +17,8 @@ a {
 }
 
 .dropzone {
-    border:4px dodgerblue dashed;
-    border-radius:10px;
+    border: 3px dodgerblue dashed;
+    border-radius: 5px;
 }
 
 .textlog {
