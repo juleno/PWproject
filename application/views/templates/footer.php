@@ -18,7 +18,7 @@
     </div>-->
     <div class="footer-bottom">
         <br>
-        <center><a href="mentionslegales.php">Mentions Légales</a> -- <a href="<?php echo base_url() ?>about">A
+        <center><a href="legal">Mentions Légales</a> -- <a href="<?php echo base_url() ?>about">A
                 propos</a></br></br>Copyright &copy; <?php echo date('Y'); ?> - Tous droits réservés
         </center>
         <br>
@@ -27,11 +27,11 @@
 </footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
-<script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <script src="<?php echo base_url(); ?>js/dropzone.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="//select2.github.io/select2/select2-3.4.1/select2.js"></script>
+<script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
 
 
 
@@ -47,6 +47,22 @@
 <!-- AJAX -->
 <script>
     $(document).ready(function() {
+
+        $(function () {
+            $('[data-toggle="popover"]').popover({
+                html: true,
+                content: $('#notifcenter').html()
+            })
+        })
+
+        var offsetFn = function () {
+            return $('#sidebar').position().top;
+        }
+
+        $('#sidebar').affix({
+            offset: {top: offsetFn}
+        });
+
         $('.textlog').hide();
 
         $('#loginForm').submit(function () {
@@ -73,15 +89,6 @@
             });
             return false;
         });
-    });
-</script>
-<script>
-    var offsetFn = function () {
-        return $('#sidebar').position().top;
-    }
-
-    $('#sidebar').affix({
-        offset: {top: offsetFn}
     });
 </script>
 </body>

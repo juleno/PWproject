@@ -5,7 +5,9 @@
                 <img class="img-circle profilpic" src="<?php echo $user['profilpic']; ?>"
                      alt="<?php echo $user['pseudo']; ?>">
                 <h3><?php echo $user['pseudo']; ?></h3>
+                <h5><?php echo $user['firstname'] . ' ' . $user['lastname']; ?></h5>
                 <h4><span class="label label-success"><?php echo $user['score']; ?> points</span></h4>
+                <em><?php echo $user['bio'] ?></em><br>
                 <?php
                 if (isset($login['id']) && $user['id'] == $login['id']) {
                     echo '<br><a class="btn btn-xs btn-default" href="' . base_url() . 'user/edit">Editer mon profil</a>';

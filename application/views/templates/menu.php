@@ -14,12 +14,31 @@
             if (isset($login)) {
                 ?>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span class="glyphicon glyphicon-bell"></span></a></li>
+                    <li>
+                        <a role="button" tabindex="0" class="notification_bell" data-toggle="popover"
+                           data-placement="bottom" data-html="true" data-trigger="focus" title="Notifications"
+                           data-content="" data-original-title="" title=""><span class="glyphicon glyphicon-bell"
+                                                                                 aria-hidden="true"></span></a>
+                    </li>
                     <li>
                         <a href="<?php echo base_url(); ?>user/<?php echo $login['pseudo'] ?>"><?php echo $login['pseudo'] ?></a>
                     </li>
                     <li><a href="<?php echo base_url(); ?>verifylogin/logout">Déconnexion</a></li>
                 </ul>
+                <div id="notifcenter" class="hide">
+                    <div class="notifcenter">
+                        <h5>Lucas96 a aimé votre publication</h5>
+                        <hr>
+                        <h5>Lucas96 a aimé votre publication</h5>
+                        <hr>
+                        <h5>Lucas96 a aimé votre publication</h5>
+                        <hr>
+                        <h5>Lucas96 a aimé votre publication</h5>
+                        <hr>
+                        <a href="#">Voir plus &raquo;</a>
+                    </div>
+
+                </div>
                 <?php
             } else {
                 ?>
