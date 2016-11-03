@@ -20,7 +20,7 @@ class Activity extends CI_Controller
 
     public function last($iduser)
     {
-        $activities = $this->activity_model->get_activity($iduser, 0);
+        $activities = $this->activity_model->get_activity($iduser);
         foreach ($activities as $activity) {
             echo '<tr><td>' . $activity['text'] . '</td></tr>';
         }
@@ -30,7 +30,7 @@ class Activity extends CI_Controller
     {
         $activities = $this->activity_model->get_activity($iduser, 1);
         foreach ($activities as $activity) {
-            echo '';
+            echo '<h5>' . $activity['text'] . '</h5><hr>';
         }
     }
 

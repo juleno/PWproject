@@ -48,13 +48,6 @@
 <script>
     $(document).ready(function() {
 
-        $('[data-toggle="popover"]').popover({
-            html: true,
-            content: $('#notifcenter').html()
-        });
-
-        refreshActivities();
-
         var offsetFn = function () {
             return $('#sidebar').position().top;
         }
@@ -71,6 +64,7 @@
             var dataMail = 'mail=' + mail;
             var dataPwd = '&pwd=' + pwd;
             var dataString = dataMail + dataPwd;
+            console.log('yo');
 
             $.ajax({
                 type: 'POST',
@@ -89,8 +83,20 @@
             });
             return false;
         });
+
+        refreshActivities();
+        refreshNotifs();
+
+        $('[data-toggle="popover"]').popover({
+            html: true,
+            content: $('#notifcenter').html()
+        });
     });
 
+    <?php
+    if (isset($login))
+    {
+    ?>
     function refreshActivities() {
         $.ajax({
             url: "<?php echo base_url() ?>activity/last/<?php echo $login['id'] ?>",
@@ -100,7 +106,18 @@
             }
         });
     }
-    ;
+    function refreshNotifs() {
+        $.ajax({
+            url: "<?php echo base_url() ?>activity/notif/<?php echo $login['id'] ?>",
+            success: function (html) {
+                lastnotifs = document.getElementById("livenotifs");
+                lastnotifs.innerHTML = html;
+            }
+        });
+    }
+    <?php
+    }
+    ?>
 </script>
 </body>
 </html>

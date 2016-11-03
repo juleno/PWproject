@@ -151,6 +151,14 @@
                 <h4><span class="label label-success"><?php echo $login['score']; ?> points</span></h4>
             </div>
             <h4>Mes amis</h4>
+            <img src="http://juleno.fr/images/profil.jpg" alt="Pseudo ami" class="img-circle" height="40px">&nbsp;
+            <img src="http://juleno.fr/images/profil.jpg" alt="Pseudo ami" class="img-circle" height="40px">&nbsp;
+            <img src="http://juleno.fr/images/profil.jpg" alt="Pseudo ami" class="img-circle" height="40px">&nbsp;
+            <img src="http://juleno.fr/images/profil.jpg" alt="Pseudo ami" class="img-circle" height="40px">&nbsp;
+            <img src="<?php echo base_url() ?>img/morefriends.png" alt="Pseudo ami" class="img-circle"
+                 height="40px"><br><br>
+            <a href="#">Ajouter un ami &raquo;</a>
+            <br>
             <h4>Dernières activités</h4>
             <table id="liveactivities" class="table">
                 <script>

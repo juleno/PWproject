@@ -27,14 +27,15 @@
                 </ul>
                 <div id="notifcenter" class="hide">
                     <div class="notifcenter">
-                        <h5>Lucas96 a aimé votre publication</h5>
-                        <hr>
-                        <h5>Lucas96 a aimé votre publication</h5>
-                        <hr>
-                        <h5>Lucas96 a aimé votre publication</h5>
-                        <hr>
-                        <h5>Lucas96 a aimé votre publication</h5>
-                        <hr>
+                        <div id="livenotifs">
+                            <img src="<?php echo base_url() ?>img/loading.gif" class="text-center" width="20px"
+                                 alt="Chargement"><br><br>
+                            <script>
+                                setInterval(function () {
+                                    refreshNotifs();
+                                }, 2000);
+                            </script>
+                        </div>
                         <a href="#">Voir plus &raquo;</a>
                     </div>
 
