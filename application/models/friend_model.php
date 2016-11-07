@@ -5,7 +5,7 @@ Class Friend_model extends CI_Model
     public function get_friend($iduser, $idfriend = FALSE)
     {
         if ($idfriend === FALSE) {
-            $sql = 'SELECT * FROM user U LEFT JOIN friend F ON U.id = F.idrequester WHERE F.idreceiver = ? UNION SELECT * FROM user U LEFT JOIN friend F ON U.id = F.idreceiver WHERE F.idrequester = ?';
+            $sql = 'SELECT * FROM user U LEFT JOIN friend F ON U.id = F.idrequester WHERE F.idreceiver = ? AND F.isaccepted = 1 UNION SELECT * FROM user U LEFT JOIN friend F ON U.id = F.idreceiver WHERE F.idrequester = ? AND F.isaccepted = 1';
             $query = $this->db->query($sql, array($iduser, $iduser));
             return $query->result_array();
         } else {

@@ -16,6 +16,20 @@ Class Activity_model extends CI_Model
         return $query->result_array();
     }
 
+    public function add_activity($idreceiver, $text, $page, $isnotif)
+    {
+        $login = $this->session->userdata('login');
+        $data = array(
+            'text' => $text,
+            'idreceiver' => $idreceiver,
+            'idactor' => $login['id'],
+            'pagedest' => $page,
+            'activitydate' => time(),
+            'isnotif' => $isnotif
+        );
+        $this->db->insert('activity', $data);
+    }
+
 }
 
 ?>

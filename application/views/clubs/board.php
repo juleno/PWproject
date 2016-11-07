@@ -156,11 +156,44 @@
                 if ($key == 5) {
                     break;
                 }
-                echo '<img src="' . $friend['profilpic'] . '" alt="' . $friend['pseudo'] . '" class="img-circle" height="40px">&nbsp;';
+                echo '<a href="' . base_url() . 'user/' . $friend['pseudo'] . '" alt="' . $friend['pseudo'] . '"><img src="' . $friend['profilpic'] . '" alt="' . $friend['pseudo'] . '" class="img-circle" height="40px"></a>&nbsp;';
             }
             ?>
-            <img src="<?php echo base_url() ?>img/morefriends.png" alt="Voir plus" class="img-circle"
-                 height="40px"><br><br>
+            <a href="#" data-toggle="modal" data-target="#listFriends"><img
+                    src="<?php echo base_url() ?>img/morefriends.png" alt="Voir plus" class="img-circle" height="40px"></a><br><br>
+
+            <!-- Modal -->
+            <div class="modal fade" id="listFriends" tabindex="-1" role="dialog" aria-labelledby="listClubsModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">
+                                <center><b>Mes amis</b></center>
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="list-group">
+                                <table class="table">
+                                    <?php
+                                    if (sizeof($friends) > 0) {
+                                        foreach ($friends as $friend) {
+                                            echo '<tr><td><img src="' . $friend['profilpic'] . '" alt="' . $friend['pseudo'] . '" class="img-circle" height="25px"></td><td>' . $friend['pseudo'] . '</td><td><a href="' . base_url() . 'user/' . $friend['pseudo'] . '" alt="' . $friend['pseudo'] . '">Voir le profil &raquo;</a></td></tr>';
+                                        }
+                                    } else {
+                                        echo '<p>Vous n\' avez encore aucun ami !';
+                                    }
+
+                                    ?>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <a href="#">Ajouter un ami &raquo;</a>
             <br>
             <h4>Dernières activités</h4>

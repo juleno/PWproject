@@ -7,7 +7,7 @@ class Friend extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('friend_model');
+        $this->load->model(array('friend_model', 'activity_model'));
     }
 
     public function getall($iduser)
@@ -28,7 +28,11 @@ class Friend extends CI_Controller
 
     public function invite($iduser)
     {
+        $login = $this->session->userdata('login');
         $this->friend_model->add_friend($iduser);
+        $this->activity_model->add_activity($iduser, $login['pseudo'] . ' vous a envoyé une demande d\'ami', '#', 1);
+        $referred_from = $this->session->userdata('referred_from');
+        redirect($referred_from);
     }
 
     public function accept($friendid)
