@@ -8,14 +8,17 @@ class Club extends CI_Controller
     {
         parent::__construct();
         $this->load->model('club_model');
+        $this->load->model('friend_model');
     }
 
     public function index()
     {
         if ($this->session->has_userdata('login')) {
             $data['login'] = $this->session->userdata('login');
+
             $data['clubs_user'] = $this->club_model->get_clubs_created_by_user($data['login']['id']);
             $data['clubs_other'] = $this->club_model->get_clubs_joined_by_user($data['login']['id']);
+            $data['friends'] = $this->friend_model->get_friend($data['login']['id']);
             $data['title'] = 'Board';
 
             $this->load->view('templates/header', $data);
