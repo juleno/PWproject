@@ -54,8 +54,10 @@
                         <input type="password" id="pwd" name="pwd" placeholder="Mot de passe" class="form-control">
                     </div>
                     <button type="submit" class="btn btn-default">Connexion</button>
-                    <a class="btn btn-primary" data-toggle="modal" data-target="#inscriptionModal">Inscription</a>
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#inscriptionModal">Inscription</a></br>
+                   <center> <a href="oubli">  Mot de passe oublié ?</a></center>
                 </form>
+
                 <?php
             }
             ?>

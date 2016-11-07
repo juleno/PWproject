@@ -26,7 +26,7 @@
                     <center><b>Nouvelle inscription</b></center>
                 </h4>
             </div>
-            <form method="POST" action="test.php">
+            <form method="POST" action="inscription.php">
                 <div class="modal-body">
                     Nom <input type="text" name="lastname" placeholder="Dupont" class="form-control" required><br>
                     Prenom <input type="text" name="firstname" placeholder="Dupont" class="form-control" required><br>
