@@ -39,7 +39,6 @@
                             </h4>
                         </div>
                         <div class="modal-body">
-                            <div class="list-group">
                                 <table class="table">
                                     <?php
                                     if (sizeof($friends) > 0) {
@@ -52,8 +51,6 @@
 
                                     ?>
                                 </table>
-
-                            </div>
                         </div>
                     </div>
                 </div>
