@@ -7,7 +7,7 @@ class User extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('user_model');
+        $this->load->model(array('user_model', 'friend_model'));
         $this->session->set_userdata('referred_from', current_url());
     }
 
@@ -48,10 +48,12 @@ class User extends CI_Controller
 
     public function view($pseudo = NULL)
     {
+        $data['user'] = $this->user_model->get_user($pseudo);
+        $data['friends'] = $this->friend_model->get_friend($data['user']['id']);
         if ($this->session->has_userdata('login')) {
             $data['login'] = $this->session->userdata('login');
+            $data['isfriend'] = $this->friend_model->isfriend($data['user']['id']);
         }
-        $data['user'] = $this->user_model->get_user($pseudo);
 
         if (empty($data['user'])) {
             redirect(base_url() . '404');

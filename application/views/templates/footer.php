@@ -91,6 +91,9 @@
             html: true,
             content: $('#notifcenter').html()
         });
+        
+        $('[data-toggle="tooltip"]').tooltip();
+
     });
 
     <?php

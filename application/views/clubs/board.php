@@ -156,7 +156,7 @@
                 if ($key == 5) {
                     break;
                 }
-                echo '<a href="' . base_url() . 'user/' . $friend['pseudo'] . '" alt="' . $friend['pseudo'] . '"><img src="' . $friend['profilpic'] . '" alt="' . $friend['pseudo'] . '" class="img-circle" height="40px"></a>&nbsp;';
+                echo '<a data-toggle="tooltip" data-placement="bottom" title="' . $friend['pseudo'] . '" href="' . base_url() . 'user/' . $friend['pseudo'] . '" alt="' . $friend['pseudo'] . '"><img src="' . $friend['profilpic'] . '" alt="' . $friend['pseudo'] . '" class="img-circle" height="40px"></a>&nbsp;';
             }
             ?>
             <a href="#" data-toggle="modal" data-target="#listFriends"><img

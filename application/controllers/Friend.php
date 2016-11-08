@@ -35,14 +35,18 @@ class Friend extends CI_Controller
         redirect($referred_from);
     }
 
-    public function accept($friendid)
+    public function accept($iduser)
     {
-        $this->friend_model->accept_friend($friendid);
+        $this->friend_model->accept_friend($iduser);
+        $referred_from = $this->session->userdata('referred_from');
+        redirect($referred_from);
     }
 
-    public function remove($friendid)
+    public function remove($iduser)
     {
-        $this->friend_model->remove_friend($friendid);
+        $this->friend_model->remove_friend($iduser);
+        $referred_from = $this->session->userdata('referred_from');
+        redirect($referred_from);
     }
 
 }

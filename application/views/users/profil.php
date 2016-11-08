@@ -16,17 +16,130 @@
                 ?>
             </div>
             <h4>Amis</h4>
+            <?php
+            foreach ($friends as $key => $friend) {
+                if ($key == 5) {
+                    break;
+                }
+                echo '<a data-toggle="tooltip" data-placement="bottom" title="' . $friend['pseudo'] . '" href="' . base_url() . 'user/' . $friend['pseudo'] . '" alt="' . $friend['pseudo'] . '"><img src="' . $friend['profilpic'] . '" alt="' . $friend['pseudo'] . '" class="img-circle" height="40px"></a>&nbsp;';
+            }
+            ?>
+            <a href="#" data-toggle="modal" data-target="#listFriends"><img
+                    src="<?php echo base_url() ?>img/morefriends.png" alt="Voir plus" class="img-circle" height="40px"></a><br><br>
+
+            <!-- Modal -->
+            <div class="modal fade" id="listFriends" tabindex="-1" role="dialog" aria-labelledby="listClubsModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">
+                                <center><b>Amis de <?php echo $user['pseudo'] ?></b></center>
+                            </h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="list-group">
+                                <table class="table">
+                                    <?php
+                                    if (sizeof($friends) > 0) {
+                                        foreach ($friends as $friend) {
+                                            echo '<tr><td><img src="' . $friend['profilpic'] . '" alt="' . $friend['pseudo'] . '" class="img-circle" height="25px"></td><td>' . $friend['pseudo'] . '</td><td><a href="' . base_url() . 'user/' . $friend['pseudo'] . '" alt="' . $friend['pseudo'] . '">Voir le profil &raquo;</a></td></tr>';
+                                        }
+                                    } else {
+                                        echo '<p>Vous n\' avez encore aucun ami !';
+                                    }
+
+                                    ?>
+                                </table>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php
+            if (isset($login['id']) && $user['id'] == $login['id']) {
+                ?>
+                <a href="#">Ajouter un ami &raquo;</a>
+                <br>
+                <?php
+            }
+            ?>
             <h4>Dernières activités</h4>
         </div>
         <div class="col-md-9">
             <br>
-            <div class="btn-group btn-group-sm" role="group">
-                <a href="<?php echo base_url() . 'friend/invite/' . $user['id'] ?>" class="btn btn-sm btn-success"><span
-                        class="glyphicon glyphicon-user"></span>&nbsp; Ajouter</a>
-                <a href="#" class="btn btn-sm btn-default"><span class="glyphicon glyphicon-envelope"></span>&nbsp;
-                    Envoyer un message</a>
-            </div>
-            <br><br>
+            <?php
+            if (isset($login['id']) && $user['id'] != $login['id']) {
+                ?>
+                <div class="btn-group btn-group-sm" role="group">
+                    <?php
+                    switch ($isfriend) {
+                        case 0:
+                            ?>
+                            <a href="<?php echo base_url() . 'friend/invite/' . $user['id'] ?>"
+                               class="btn btn-sm btn-success"><span
+                                    class="glyphicon glyphicon-user"></span>&nbsp; Ajouter</a>
+                            <?php
+                            break;
+                        case 1:
+                            ?>
+                            <a href="<?php echo base_url() . 'friend/accept/' . $user['id'] ?>"
+                               class="btn btn-sm btn-success"><span
+                                    class="glyphicon glyphicon-user"></span>&nbsp; Accepter</a>
+                            <?php
+                            break;
+                        case 2:
+                            ?>
+                            <a href="<?php echo base_url() . 'friend/invite/' . $user['id'] ?>"
+                               class="btn btn-sm btn-success disabled"><span
+                                    class="glyphicon glyphicon-user"></span>&nbsp; En attente</a>
+                            <?php
+                            break;
+                        case 3:
+                            ?>
+                            <a href="<?php echo base_url() . 'friend/remove/' . $user['id'] ?>"
+                               class="btn btn-sm btn-danger"><span
+                                    class="glyphicon glyphicon-user"></span>&nbsp; Retirer</a>
+                            <?php
+                            break;
+                    }
+                    ?>
+                    <!-- Modal -->
+                    <div class="modal fade" id="newMessage" tabindex="-1" role="dialog"
+                         aria-labelledby="newMessageModalLabel">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                            aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">
+                                        <center><b>Envoyer un message à <?php echo $user['pseudo'] ?></b></center>
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="">
+                                        <textarea class="form-control" rows="14" id="msg" name="msg" required=""
+                                                  placeholder="Rédigez votre message"></textarea>
+                                    </form>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+                                    <button type="submit" class="btn btn-primary">Continuer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" data-toggle="modal" data-target="#newMessage" class="btn btn-sm btn-default"><span
+                            class="glyphicon glyphicon-envelope"></span>&nbsp;
+                        Envoyer un message</a>
+                </div>
+                <br>
+                <?php
+            }
+            ?>
+            <br>
             <blockquote>
                 <p><?php echo $user['bio'] ?></p>
             </blockquote>

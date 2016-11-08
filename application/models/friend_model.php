@@ -28,18 +28,34 @@ Class Friend_model extends CI_Model
 
     public function accept_friend($friendid)
     {
-        $data = array(
-            'isaccepted' => 1,
-            'frienddate' => time()
-        );
-
-        $this->db->where('id', $friendid);
-        $this->db->update('friend', $data);
+        $login = $this->session->userdata('login');
+        $sql = 'UPDATE friend SET isaccepted = 1, frienddate = ? WHERE (idreceiver = ? OR idreceiver = ?) AND (idrequester = ? OR idrequester = ?)';
+        $this->db->query($sql, array(time(), $login['id'], $friendid, $login['id'], $friendid));
     }
 
     public function remove_friend($friendid)
     {
-        $this->db->delete('friend', array('id' => $friendid));
+        $login = $this->session->userdata('login');
+        $sql = 'DELETE FROM friend WHERE (idreceiver = ? OR idreceiver = ?) AND (idrequester = ? OR idrequester = ?)';
+        $this->db->query($sql, array($login['id'], $friendid, $login['id'], $friendid));
+    }
+
+    public function isfriend($friendid) //0 pas ami, 1 en attente, 2 demande d'ami à valider, 3 amis
+    {
+        $login = $this->session->userdata('login');
+        $sql = 'SELECT * FROM friend WHERE (idreceiver = ? OR idreceiver = ?) AND (idrequester = ? OR idrequester = ?)';
+        $query = $this->db->query($sql, array($login['id'], $friendid, $login['id'], $friendid));
+        $data = $query->row_array();
+        if ($data == null) {
+            return 0;
+        }
+        if ($data['isaccepted']) {
+            return 3;
+        }
+        if ($data['idreceiver'] == $friendid) {
+            return 2;
+        }
+        return 1;
     }
 }
 

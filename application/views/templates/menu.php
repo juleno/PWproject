@@ -21,6 +21,9 @@
                                                                                  aria-hidden="true"></span></a>
                     </li>
                     <li>
+                        <a role="button"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></a>
+                    </li>
+                    <li>
                         <a href="<?php echo base_url(); ?>user/<?php echo $login['pseudo'] ?>"><?php echo $login['pseudo'] ?></a>
                     </li>
                     <li><a href="<?php echo base_url(); ?>verifylogin/logout">Déconnexion</a></li>
