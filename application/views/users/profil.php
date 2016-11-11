@@ -76,7 +76,7 @@
                         case 0:
                             ?>
                             <a href="<?php echo base_url() . 'friend/invite/' . $user['id'] ?>"
-                               class="btn btn-sm btn-success"><span
+                               class="btn btn-sm btn-primary"><span
                                     class="glyphicon glyphicon-user"></span>&nbsp; Ajouter</a>
                             <?php
                             break;
@@ -84,13 +84,13 @@
                             ?>
                             <a href="<?php echo base_url() . 'friend/accept/' . $user['id'] ?>"
                                class="btn btn-sm btn-success"><span
-                                    class="glyphicon glyphicon-user"></span>&nbsp; Accepter</a>
+                                    class="glyphicon glyphicon-ok"></span>&nbsp; Accepter</a>
                             <?php
                             break;
                         case 2:
                             ?>
                             <a href="<?php echo base_url() . 'friend/invite/' . $user['id'] ?>"
-                               class="btn btn-sm btn-success disabled"><span
+                               class="btn btn-sm btn-primary disabled"><span
                                     class="glyphicon glyphicon-user"></span>&nbsp; En attente</a>
                             <?php
                             break;

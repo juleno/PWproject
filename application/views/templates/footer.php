@@ -32,6 +32,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="//select2.github.io/select2/select2-3.4.1/select2.js"></script>
 <script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
+<script src="<?php echo base_url(); ?>js/list.js"></script>
 
 
 
@@ -44,9 +45,9 @@
 
 </SCRIPT>-->
 
-<!-- AJAX -->
 <script>
     $(document).ready(function() {
+
 
         var offsetFn = function () {
             return $('#sidebar').position().top;
@@ -74,7 +75,7 @@
                     var responseData = jQuery.parseJSON(data)
                     if (responseData.status == 1) {
                         $('.textlog').fadeIn();
-                        $('.textlog').text(responseData.message);
+                        // $('.textlog').text(responseData.message);
                     }
                     else {
                         location.reload();
@@ -84,6 +85,7 @@
             return false;
         });
 
+
         refreshActivities();
         refreshNotifs();
 
@@ -91,8 +93,15 @@
             html: true,
             content: $('#notifcenter').html()
         });
-        
+
         $('[data-toggle="tooltip"]').tooltip();
+
+        var options = {
+            valueNames: ['name', 'desc', 'lastactivity', 'nbmembers', 'clubdate']
+        };
+
+        var clubList = new List('clubs', options);
+        clubList.sort('lastactivity', {order: "desc"});
 
     });
 

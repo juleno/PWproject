@@ -30,14 +30,16 @@ class Friend extends CI_Controller
     {
         $login = $this->session->userdata('login');
         $this->friend_model->add_friend($iduser);
-        $this->activity_model->add_activity($iduser, $login['pseudo'] . ' vous a envoyé une demande d\'ami', '#', 1);
+        $this->activity_model->add_activity($iduser, $login['pseudo'] . ' vous a envoyé une demande d\'ami', base_url() . 'user/' . $login['pseudo'], 1);
         $referred_from = $this->session->userdata('referred_from');
         redirect($referred_from);
     }
 
     public function accept($iduser)
     {
+        $login = $this->session->userdata('login');
         $this->friend_model->accept_friend($iduser);
+        $this->activity_model->add_activity($iduser, $login['pseudo'] . ' a accepté votre demande d\'ami', base_url() . 'user/' . $login['pseudo'], 1);
         $referred_from = $this->session->userdata('referred_from');
         redirect($referred_from);
     }

@@ -30,6 +30,18 @@ class Club extends CI_Controller
         }
     }
 
+    public function explore()
+    {
+        $data['login'] = $this->session->userdata('login');
+        $data['clubs'] = $this->club_model->get_club_public();
+        $data['title'] = 'Explorer';
+
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/menu', $data);
+        $this->load->view('clubs/explore', $data);
+        $this->load->view('templates/footer', $data);
+    }
+
     public function view($id = NULL)
     {
         if ($this->session->has_userdata('login')) {

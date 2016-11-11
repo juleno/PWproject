@@ -108,37 +108,9 @@
                     echo '<li class="list-group-item">Aucun club !</li>';
                 }
                 ?>
-                <a href="#" class="list-group-item active" data-toggle="modal" data-target="#listClubs">
+                <a href="<?php echo base_url(); ?>club/explore" class="list-group-item active">
                     <span class="glyphicon glyphicon-search"></span> Explorer les clubs publics
                 </a>
-            </div>
-
-            <!-- Modal -->
-            <div class="modal fade" id="listClubs" tabindex="-1" role="dialog" aria-labelledby="listClubsModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel"><center><b>Liste des clubs</b></center></h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="list-group">
-
-                                <?php
-                                if (sizeof($clubs_other) > 0) {
-                                    foreach ($clubs_other as $club) {
-                                        echo '<a href="club/' . $club['id'] . '" class="list-group-item"><span class="glyphicon glyphicon-question-sign"></span> ' . $club['name'] . '</a>';
-                                    }
-                                } else {
-                                    echo '<li class="list-group-item">Aucun club !</li>';
-                                }
-
-                                ?>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="col-md-3">

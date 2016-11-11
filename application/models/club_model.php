@@ -13,6 +13,12 @@ Class Club_model extends CI_Model
         return $query->row_array();
     }
 
+    public function get_club_public()
+    {
+        $query = $this->db->get_where('club', array('ispublic' => 1));
+        return $query->result_array();
+    }
+
     public function get_clubs_created_by_user($iduser)
     {
         $query = $this->db->get_where('club', array('iduser' => $iduser));

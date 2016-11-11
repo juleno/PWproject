@@ -29,6 +29,17 @@ Class User_model extends CI_Model
         $query = $this->db->get_where('user', array('pseudo' => $pseudo));
         return $query->row_array();
     }
+
+    public function get_user_by_id($id = FALSE)
+    {
+        if ($id === FALSE) {
+            $query = $this->db->get('user');
+            return $query->result_array();
+        }
+
+        $query = $this->db->get_where('user', array('id' => $id));
+        return $query->row_array();
+    }
 }
 
 ?>

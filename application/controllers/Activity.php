@@ -22,7 +22,7 @@ class Activity extends CI_Controller
     {
         $activities = $this->activity_model->get_activity($iduser);
         foreach ($activities as $activity) {
-            echo '<tr><td>' . $activity['text'] . '</td></tr>';
+            echo '<tr><td><a href="' . $activity['pagedest'] . '">' . $activity['text'] . '</a></td></tr>';
         }
     }
 
