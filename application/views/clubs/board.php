@@ -160,7 +160,7 @@
                 </div>
             </div>
 
-            <a href="#">Ajouter un ami &raquo;</a>
+            <a href="<?php echo base_url() ?>user">Ajouter un ami &raquo;</a>
             <br>
             <h4>Dernières activités</h4>
             <table id="liveactivities" class="table">

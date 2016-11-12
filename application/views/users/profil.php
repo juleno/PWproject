@@ -58,7 +58,7 @@
             <?php
             if (isset($login['id']) && $user['id'] == $login['id']) {
                 ?>
-                <a href="#">Ajouter un ami &raquo;</a>
+                <a href="<?php echo base_url() ?>user">Ajouter un ami &raquo;</a>
                 <br>
                 <?php
             }
@@ -141,8 +141,48 @@
                 <p><?php echo $user['bio'] ?></p>
             </blockquote>
             <h3>Contributions</h3>
+            <p>Les 30 derniers jours</p>
+            <div id="chart"></div>
             <h3>Clubs crées</h3>
+            <div class="list-group">
+                <?php
+                if (sizeof($clubs_user) > 0) {
+                    foreach ($clubs_user as $club) {
+                        echo '<a href="club/' . $club['id'] . '" class="list-group-item">';
+                        echo '<h4 class="list-group-item-heading">' . $club['name'] . '</h4>';
+                        echo '<p class="list-group-item-text">' . $club['desc'] . '</p>';
+                        echo '<br>';
+                        echo '<span class="list-group-item-text">';
+                        echo $club['strlabel'];
+                        echo '<small class="pull-right">Dernière activité le 01/11/2016 à 17:21</small>&nbsp;';
+                        echo '</span>';
+                        echo '</a>';
+                    }
+                } else {
+                    echo '<li class="list-group-item">Aucun club !</li>';
+                }
+                ?>
+            </div>
             <h3>Clubs intégrés</h3>
+            <div class="list-group">
+                <?php
+                if (sizeof($clubs_other) > 0) {
+                    foreach ($clubs_other as $club) {
+                        echo '<a href="club/' . $club['id'] . '" class="list-group-item">';
+                        echo '<h4 class="list-group-item-heading">' . $club['name'] . '</h4>';
+                        echo '<p class="list-group-item-text">' . $club['desc'] . '</p>';
+                        echo '<br>';
+                        echo '<span class="list-group-item-text">';
+                        echo $club['strlabel'];
+                        echo '<small class="pull-right">Dernière activité le 01/11/2016 à 17:21</small>&nbsp;';
+                        echo '</span>';
+                        echo '</a>';
+                    }
+                } else {
+                    echo '<li class="list-group-item">Aucun club !</li>';
+                }
+                ?>
+            </div>
         </div>
     </div>
 

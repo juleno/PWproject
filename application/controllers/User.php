@@ -7,7 +7,7 @@ class User extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(array('user_model', 'friend_model'));
+        $this->load->model(array('user_model', 'friend_model', 'club_model', 'skill_model'));
         $this->session->set_userdata('referred_from', current_url());
     }
 
@@ -30,17 +30,17 @@ class User extends CI_Controller
     {
         if ($this->session->has_userdata('login')) {
             $data['login'] = $this->session->userdata('login');
-            if ($data['login']['isadmin']) {
                 $data['users'] = $this->user_model->get_user();
-                $data['title'] = 'User list';
+            foreach ($data['users'] as $key => $user) {
+                $data['users'][$key]['isfriend'] = $this->friend_model->isfriend($user['id']);
+            }
+            $data['title'] = 'Rechercher un utilisateur';
 
                 $this->load->view('templates/header', $data);
                 $this->load->view('templates/menu', $data);
                 $this->load->view('users/userlist', $data);
                 $this->load->view('templates/footer', $data);
-            } else {
-                redirect(base_url() . '404');
-            }
+
         } else {
             redirect(base_url());
         }
@@ -50,6 +50,14 @@ class User extends CI_Controller
     {
         $data['user'] = $this->user_model->get_user($pseudo);
         $data['friends'] = $this->friend_model->get_friend($data['user']['id']);
+        $data['clubs_user'] = $this->club_model->get_clubs_created_by_user($data['user']['id']);
+        foreach ($data['clubs_user'] as $key => $club) {
+            $data['clubs_user'][$key]['strlabel'] = $this->skill_model->get_skill_label($club['id']);
+        }
+        $data['clubs_other'] = $this->club_model->get_clubs_joined_by_user($data['user']['id']);
+        foreach ($data['clubs_other'] as $key => $club) {
+            $data['clubs_other'][$key]['strlabel'] = $this->skill_model->get_skill_label($club['id']);
+        }
         if ($this->session->has_userdata('login')) {
             $data['login'] = $this->session->userdata('login');
             $data['isfriend'] = $this->friend_model->isfriend($data['user']['id']);

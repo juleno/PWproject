@@ -18,7 +18,8 @@
     </div>-->
     <div class="footer-bottom">
         <br>
-        <center><a href="legal">Mentions Légales</a> -- <a href="<?php echo base_url() ?>about">A
+        <center><a href="<?php echo base_url() ?>legal">Mentions Légales</a> &nbsp;&bull;&nbsp; <a
+                href="<?php echo base_url() ?>about">A
                 propos</a></br></br>Copyright &copy; <?php echo date('Y'); ?> - Tous droits réservés
         </center>
         <br>
@@ -33,7 +34,8 @@
 <script src="//select2.github.io/select2/select2-3.4.1/select2.js"></script>
 <script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
 <script src="<?php echo base_url(); ?>js/list.js"></script>
-
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="<?php echo base_url(); ?>js/c3.min.js"></script>
 
 
 <!--<SCRIPT LANGUAGE="JavaScript">
@@ -48,6 +50,23 @@
 <script>
     $(document).ready(function() {
 
+        var chart = c3.generate({
+            bindto: '#chart',
+            data: {
+                columns: [
+                    ['Nombre de contributions', 30, 200, 100, 400, 150, 250, 30, 200, 100, 400, 150, 250, 30, 200, 100, 400, 150, 250, 30, 200, 100, 400, 150, 250, 30, 200, 100, 400, 150, 250, 30, 200, 100, 400, 150, 250],
+
+                ],
+                type: 'bar'
+            },
+            bar: {
+                width: {
+                    ratio: 0.9 // this makes bar width 50% of length between ticks
+                }
+                // or
+                //width: 100 // this makes bar width 100px
+            }
+        });
 
         var offsetFn = function () {
             return $('#sidebar').position().top;
@@ -96,14 +115,37 @@
 
         $('[data-toggle="tooltip"]').tooltip();
 
+        <?php
+        if ($title == "Explorer") {
+        ?>
         var options = {
             valueNames: ['name', 'desc', 'lastactivity', 'nbmembers', 'clubdate']
         };
 
         var clubList = new List('clubs', options);
         clubList.sort('lastactivity', {order: "desc"});
+        <?php
+        }
+        ?>
+
+        <?php
+        if ($title == "Rechercher un utilisateur") {
+        ?>
+        var options2 = {
+            valueNames: ['pseudo', 'firstname', 'lastname', 'score', 'inscridate']
+        };
+
+        var userList = new List('users', options2);
+        userList.sort('pseudo', {order: "asc"});
+        <?php
+        }
+        ?>
 
     });
+
+
+
+
 
     <?php
     if (isset($login))
