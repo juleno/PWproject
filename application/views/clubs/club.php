@@ -7,7 +7,7 @@
                 <p class="lead">Club crée par le <?php echo date("d/m/Y", $club['clubdate']) ?></p>
                 <em>
                     <?php echo $club['desc'] ?>
-                </em><br><br>
+                </em><br><br><h4><?php echo $club['strlabel'] ?></h4><br>
                 <a href="#">35 collaborateurs &raquo;</a>
             </div>
 

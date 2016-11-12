@@ -7,8 +7,7 @@ class Club extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('club_model');
-        $this->load->model('friend_model');
+        $this->load->model(array('club_model', 'friend_model', 'skill_model'));
     }
 
     public function index()
@@ -17,7 +16,14 @@ class Club extends CI_Controller
             $data['login'] = $this->session->userdata('login');
 
             $data['clubs_user'] = $this->club_model->get_clubs_created_by_user($data['login']['id']);
+            foreach ($data['clubs_user'] as $key => $club) {
+                $data['clubs_user'][$key]['strlabel'] = $this->skill_model->get_skill_label($club['id']);
+            }
             $data['clubs_other'] = $this->club_model->get_clubs_joined_by_user($data['login']['id']);
+            foreach ($data['clubs_other'] as $key => $club) {
+                $data['clubs_other'][$key]['strlabel'] = $this->skill_model->get_skill_label($club['id']);
+            }
+            $data['skills'] = $this->skill_model->get_skill();
             $data['friends'] = $this->friend_model->get_friend($data['login']['id']);
             $data['title'] = 'Board';
 
@@ -34,6 +40,9 @@ class Club extends CI_Controller
     {
         $data['login'] = $this->session->userdata('login');
         $data['clubs'] = $this->club_model->get_club_public();
+        foreach ($data['clubs'] as $key => $club) {
+            $data['clubs'][$key]['strlabel'] = $this->skill_model->get_skill_label($club['id']);
+        }
         $data['title'] = 'Explorer';
 
         $this->load->view('templates/header', $data);
@@ -48,7 +57,7 @@ class Club extends CI_Controller
             $data['login'] = $this->session->userdata('login');
         }
         $data['club'] = $this->club_model->get_club($id);
-
+        $data['club']['strlabel'] = $this->skill_model->get_skill_label($data['club']['id']);
         if (empty($data['club'])) {
             redirect(base_url() . '404');
         }

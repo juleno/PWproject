@@ -11,10 +11,7 @@
                         echo '<p class="list-group-item-text">' . $club['desc'] . '</p>';
                         echo '<br>';
                         echo '<span class="list-group-item-text">';
-                        //TODO: Afficher les labels des skills
-                        echo '<span class="label label-success">PHP</span>&nbsp;';
-                        echo '<span class="label label-warning">HTML</span>&nbsp;';
-                        echo '<span class="label label-info">CSS</span>&nbsp;';
+                        echo $club['strlabel'];
                         echo '<small class="pull-right">Dernière activité le 01/11/2016 à 17:21</small>&nbsp;';
                         echo '</span>';
                         echo '</a>';
@@ -63,10 +60,13 @@
                                     <textarea class="form-control" rows="7" id="comment" name="desc" maxlength="500" required></textarea><br>
 
                                     <label for="name">Compétences requises:</label>
-                                    <!--<input type="text" class="form-control" name ="skill1" id="skill1" required><br>
-                                    <input type="text" class="form-control" name ="skill2" id="skill2"><br>
-                                    <input type="text" class="form-control" name ="skill3" id="skill3"><br>-->
-
+                                    <div class="row">
+                                        <?php
+                                        foreach ($skills as $skill) {
+                                            echo ' <div class="col-md-4"><input type="checkbox" id="' . $skill['id'] . '" value="' . $skill['id'] . '"> ' . $skill['name'] . '</div>';
+                                        }
+                                        ?>
+                                    </div>
                                     <div class="modal-body">
                                         <div class="row">
 
@@ -96,10 +96,7 @@
                         echo '<p class="list-group-item-text">' . $club['desc'] . '</p>';
                         echo '<br>';
                         echo '<span class="list-group-item-text">';
-                        //TODO: Afficher les labels des skills
-                        echo '<span class="label label-success">PHP</span>&nbsp;';
-                        echo '<span class="label label-warning">HTML</span>&nbsp;';
-                        echo '<span class="label label-info">CSS</span>&nbsp;';
+                        echo $club['strlabel'];
                         echo '<small class="pull-right">Dernière activité le 01/11/2016 à 17:21</small>&nbsp;';
                         echo '</span>';
                         echo '</a>';

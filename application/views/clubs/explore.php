@@ -23,7 +23,7 @@
             <tbody class="list">
             <?php
             foreach ($clubs as $club) {
-                echo '<tr><td class="name"><a href="' . base_url() . 'club/' . $club['id'] . '">' . $club['name'] . '</a></td><td class="desc">' . $club['desc'] . '<br><span class="label label-success">PHP</span>&nbsp;<span class="label label-warning">HTML</span>&nbsp;<span class="label label-info">CSS</span>&nbsp;</td><td class="lastactivity">' . date('d/m/Y H:i', $club['clubdate']) . '</td><td class="nbmembers">5</td><td class="clubdate">' . date('d/m/Y H:i', $club['clubdate']) . '</td></tr>';
+                echo '<tr><td class="name"><a href="' . base_url() . 'club/' . $club['id'] . '">' . $club['name'] . '</a></td><td class="desc">' . $club['desc'] . '<br>' . $club['strlabel'] . '</td><td class="lastactivity">' . date('d/m/Y H:i', $club['clubdate']) . '</td><td class="nbmembers">5</td><td class="clubdate">' . date('d/m/Y H:i', $club['clubdate']) . '</td></tr>';
             }
             ?>
             </tbody>
