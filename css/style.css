@@ -57,3 +57,7 @@ a {
 .navbar .nav > li > a {
     font-size: 13px;
 }
+
+.list-group-club {
+    background-color: #00CC00;
+}

@@ -1,7 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: Portable
- * Date: 04/11/2016
- * Time: 13:07
- */
+<div class="container top">
+    <br><h2>Mot de passe oublié</h2>
+    
+</div>

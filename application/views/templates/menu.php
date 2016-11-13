@@ -7,7 +7,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<?php echo base_url(); ?>">skilldev.io</a>
+
+            <!--Logo provisoire, juste le nom à modif-->
+            <a class="navbar-brand" href="<?php echo base_url(); ?>"><img src="<?php echo base_url() ?>img/logo.png" class="img-responsive" width="150px" ></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <?php

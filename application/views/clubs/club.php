@@ -8,7 +8,11 @@
                 <em>
                     <?php echo $club['desc'] ?>
                 </em><br><br><h4><?php echo $club['strlabel'] ?></h4><br>
-                <a href="#">35 collaborateurs &raquo;</a>
+                <a href="#"></a>
+
+                <span data-toggle="modal" data-target="#collaboratorListModal">
+                    <button class="btn btn-default btn-sm" data-toggle="tooltip" data-placement="right" title="Liste des collaborateurs à afficher ici (juste pseudo)">35 collaborateurs &raquo;</button>
+                </span>
             </div>
 
             <div class="panel panel-default">
@@ -142,5 +146,27 @@ public class InsertionInteger {
             </div>
         </div>
 
+    </div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="collaboratorListModal" tabindex="-1" role="dialog" aria-labelledby="collaboratorListModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">
+                    <center><b>Liste des collaborateurs</b></center>
+                </h4>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                   <!--Affichage du pseudo + image des collaborateurs du club-->
+                </table>
+            </div>
+        </div>
     </div>
 </div>
