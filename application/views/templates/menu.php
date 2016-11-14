@@ -36,7 +36,7 @@
                     <li>
                         <a href="<?php echo base_url(); ?>user/<?php echo $login['pseudo'] ?>"><?php echo $login['pseudo'] ?></a>
                     </li>
-                    <li><a href="<?php echo base_url(); ?>verifylogin/logout">Déconnexion</a></li>
+                    <li><a href="<?php echo base_url(); ?>VerifyLogin/logout">Déconnexion</a></li>
                 </ul>
                 <div id="notifcenter" class="hide">
                     <div class="notifcenter">
@@ -57,7 +57,7 @@
                 ?>
                 <form id="loginForm" method="post" class="navbar-form navbar-right">
                     <div class="form-group">
-                        <small class="textlog">Mauvaise adresse email et/ou mot de passe. <a
+                        <small class="textlog">Mauvaise adresse email et/ou mot de passe. &nbsp;<br><a
                                 href="<?php echo base_url() . 'oubli'; ?>">Mot de passe oublié ?</a></small>
                     </div>
                     <div class="form-group">

@@ -88,7 +88,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: '<?php echo base_url() ?>verifylogin',
+                url: '<?php echo base_url() ?>VerifyLogin',
                 data: dataString,
                 success: function (data) {
                     var responseData = jQuery.parseJSON(data)
