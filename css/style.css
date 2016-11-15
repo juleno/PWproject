@@ -28,6 +28,10 @@ a {
     color: #1b8dbb;
 }
 
+a:hover {
+    text-decoration: none;
+}
+
 .dropzone {
     border: 3px dodgerblue dashed;
     border-radius: 5px;

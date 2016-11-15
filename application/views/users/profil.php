@@ -148,7 +148,7 @@
                 <?php
                 if (sizeof($clubs_user) > 0) {
                     foreach ($clubs_user as $club) {
-                        echo '<a href="club/' . $club['id'] . '" class="list-group-item">';
+                        echo '<a href="' . base_url() . 'club/' . $club['id'] . '" class="list-group-item">';
                         echo '<h4 class="list-group-item-heading">' . $club['name'] . '</h4>';
                         echo '<p class="list-group-item-text">' . $club['desc'] . '</p>';
                         echo '<br>';
@@ -168,7 +168,7 @@
                 <?php
                 if (sizeof($clubs_other) > 0) {
                     foreach ($clubs_other as $club) {
-                        echo '<a href="club/' . $club['id'] . '" class="list-group-item">';
+                        echo '<a href="' . base_url() . 'club/' . $club['id'] . '" class="list-group-item">';
                         echo '<h4 class="list-group-item-heading">' . $club['name'] . '</h4>';
                         echo '<p class="list-group-item-text">' . $club['desc'] . '</p>';
                         echo '<br>';

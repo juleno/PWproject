@@ -78,6 +78,7 @@
 
         $('.textlog').hide();
 
+        //LOGIN
         $('#loginForm').submit(function () {
             var mail = $('#mail').val();
             var pwd = $('#pwd').val();
@@ -103,6 +104,9 @@
             });
             return false;
         });
+
+        //INSCRIPTION
+
 
 
         refreshActivities();

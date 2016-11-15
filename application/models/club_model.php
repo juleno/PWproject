@@ -2,7 +2,7 @@
 
 Class Club_model extends CI_Model
 {
-    public function get_club($id = FALSE)
+    public function get_club($id = FALSE, $user = FALSE)
     {
         if ($id === FALSE) {
             $query = $this->db->get('club');
@@ -10,7 +10,23 @@ Class Club_model extends CI_Model
         }
 
         $query = $this->db->get_where('club', array('id' => $id));
-        return $query->row_array();
+        $result = $query->row_array();
+
+        if (!isset($result['id'])) {
+            return false;
+        }
+
+        if ($result['ispublic']) {
+            return $result;
+        }
+
+        if ($user !== FALSE) {
+            if ($this->is_contributor($id, $user) == 2) {
+                return $result;
+            } else {
+                return false;
+            }
+        }
     }
 
     public function get_club_public()
@@ -39,6 +55,19 @@ Class Club_model extends CI_Model
         $this->db->where('record', $record);
 
         //TODO: Requete : SELECT DISTINCT user.pseudo FROM user, userclub WHERE user.id = userclub.iduser AND userclub.idclub = 3
+    }
+
+    public function is_contributor($idclub, $iduser)
+    {
+        $query = $this->db->get_where('userclub', array('iduser' => $iduser, 'idclub' => $idclub));
+        $result = $query->row_array();
+        if (!isset($result['id'])) {
+            return 0;
+        }
+        if ($result['joindate'] == 0) {
+            return 1;
+        }
+        return 2;
     }
 }
 

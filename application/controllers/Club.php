@@ -55,13 +55,17 @@ class Club extends CI_Controller
     {
         if ($this->session->has_userdata('login')) {
             $data['login'] = $this->session->userdata('login');
+            $data['club'] = $this->club_model->get_club($id, $data['login']['id']);
+        } else {
+            $data['club'] = $this->club_model->get_club($id);
         }
-        $data['club'] = $this->club_model->get_club($id);
-        $data['club']['strlabel'] = $this->skill_model->get_skill_label($data['club']['id']);
-        if (empty($data['club'])) {
+        if ($data['club'] == false) {
             redirect(base_url() . '404');
         }
-
+        if (!isset($data['club']['id'])) {
+            redirect(base_url() . '404');
+        }
+        $data['club']['strlabel'] = $this->skill_model->get_skill_label($data['club']['id']);
         $data['title'] = $data['club']['name'];
 
         $this->load->view('templates/header', $data);
