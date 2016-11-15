@@ -45,23 +45,142 @@
                     <center><b>Nouvelle inscription</b></center>
                 </h4>
             </div>
-            <form method="POST" action="inscription.php">
+            <form id="form_insript" method="POST" action="inscription.php">
                 <div class="modal-body">
-                    Nom <input type="text" name="lastname" placeholder="Dupont" class="form-control" required><br>
-                    Prenom <input type="text" name="firstname" placeholder="Dupont" class="form-control" required><br>
-                    Email <input type="email" name="email" placeholder="dupont.dupont@dupont.fr" class="form-control"
-                                 required><br>
-                    Pseudo <input type="text" name="pseudo" placeholder="dupont35000" class="form-control" required><br>
-                    Mot de passe <input type="password" name="password" class="form-control" required><br>
-                    Confirmation mot de passe <input type="password" name="confirmepassword" class="form-control"
+                    <div id="pb_lastname" style="color:red;visibility:hidden;"><i>Nom incorrect</i></div>Nom <input type="text" id="lastname_form" name="lastname" onblur="verifLastName()" placeholder="Dupont"  class="form-control" required>
+                    <div id="pb_firstname" style="color:red;visibility:hidden;"><i>Prenom incorrect</i></div>Prenom <input type="text" id="firstname_form" name="firstname" onblur="verifFirstName()" placeholder="Dupont" class="form-control" required>
+                    <div id="pb_email" style="color:red;visibility:hidden;"><i>L'information saisie n'est pas une adresse email</i></div>Email<input type="email" id="email_form" name="email" onblur="verifMail()" placeholder="dupont.dupont@dupont.fr" class="form-control"
+                                 required>
+                    <div id="pb_pseudo" style="color:red;visibility:hidden;"><i>Pseudo incorrect (6 carac. min. / caractères autorisés [A-Z], [0-9] et _)</i></div>Pseudo (6 carac. min)<input type="text" id="pseudo_form" name="pseudo" onblur="verifPseudo()" placeholder="dupont35000" class="form-control" required>
+                    <div id="pb_pwd" style="color:red;visibility:hidden;"><i>Mot de passe incorrect</i></div>Mot de passe<input type="password" id="pwd_form" name="password" onblur="verifPwd1()" class="form-control" required>
+                    <div id="pb_pwd2" style="color:red;visibility:hidden;"><i>Les deux mots de passe ne sont pas égaux</i></div>Confirmation mot de passe<input type="password" id="pwd2_form" onblur="verifPwd2()" name="confirmepassword" class="form-control"
                                                      required><br>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    <button type="submit" id="button_save_inscription" class="btn btn-primary" disabled="true">Enregistrer</button>
                 </div>
 
             </form>
         </div>
     </div>
 </div>
+
+
+<!-- SCRIPT VERIF FORM INSCRIPTION -->
+
+<script type="text/javascript">
+
+    var valid_pseudo = false;
+    var valid_lastname = false;
+    var valid_firstname = false;
+    var valid_email = false;
+    var valid_pwd = false;
+    var valid_pwd1 = false;
+
+    function deblock_val() {
+        if (valid_pseudo && valid_lastname && valid_firstname && valid_email && valid_pwd && valid_pwd1) {
+            document.getElementById("button_save_inscription").disabled = false;
+        }
+    }
+
+    function verifPseudo() {
+        var regex2 = new RegExp('[^a-zA-Z0-9_]');
+        var pseudo = document.getElementById("pseudo_form").value;
+        if(!regex2.test(pseudo)) {
+            document.getElementById("pseudo_form").style.border = "2px solid green";
+            document.getElementById("pb_pseudo").style.visibility = "hidden";
+            valid_pseudo = true;
+        }
+        else {
+            document.getElementById("pseudo_form").style.border = "2px solid red";
+            document.getElementById("pb_pseudo").style.visibility = "visible";
+            valid_pseudo = false;
+        }
+
+        /* Cas pseudo déjà pris */
+
+        deblock_val();
+    }
+
+
+    function verifLastName() {
+        var size_name = document.getElementById("lastname_form").value.length;
+        if (size_name < 2) {
+            document.getElementById("lastname_form").style.border = "2px solid red";
+            document.getElementById("pb_lastname").style.visibility = "visible";
+            valid_lastname = false;
+        } else {
+            document.getElementById("lastname_form").style.border = "2px solid green";
+            document.getElementById("pb_lastname").style.visibility = "hidden";
+            valid_lastname = true;
+        }
+        deblock_val();
+    }
+
+    function verifFirstName() {
+        var size_firstname = document.getElementById("firstname_form").value.length;
+        if (size_firstname < 2) {
+            document.getElementById("firstname_form").style.border = "2px solid red";
+            document.getElementById("pb_firstname").style.visibility = "visible";
+            valid_firstname = false;
+        } else {
+            document.getElementById("firstname_form").style.border = "2px solid green";
+            document.getElementById("pb_firstname").style.visibility = "hidden";
+            valid_firstname = true;
+        }
+        deblock_val();
+    }
+
+
+    function validateEmail(email_form) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email_form);
+    }
+
+    function verifMail() {
+        $("#result").text("");
+        var email = document.getElementById("email_form").value;
+        if (validateEmail(email)) {
+            document.getElementById("email_form").style.border = "2px solid green";
+            document.getElementById("pb_email").style.visibility = "hidden";
+            valid_email = true;
+        } else {
+            document.getElementById("email_form").style.border = "2px solid red";
+            document.getElementById("pb_email").style.visibility = "visible";
+            valid_email = false;
+        }
+        return false;
+    }
+
+
+    function verifPwd1() {
+        var size_pseudo = document.getElementById("pwd_form").value.length;
+        if (size_pseudo < 6) {
+            document.getElementById("pwd_form").style.border = "2px solid red";
+            document.getElementById("pb_pwd").style.visibility = "visible";
+            valid_pwd = false;
+        } else {
+            document.getElementById("pwd_form").style.border = "2px solid green";
+            document.getElementById("pb_pwd").style.visibility = "hidden";
+            valid_pwd = true;
+        }
+        deblock_val();
+    }
+
+    function verifPwd2() {
+        if (document.getElementById("pwd2_form").value != document.getElementById("pwd_form").value) {
+            document.getElementById("pwd2_form").style.border = "2px solid red";
+            document.getElementById("pb_pwd2").style.visibility = "visible";
+            valid_pwd1 = false;
+        } else {
+            document.getElementById("pwd2_form").style.border = "2px solid green";
+            document.getElementById("pb_pwd2").style.visibility = "hidden";
+            valid_pwd1 = true;
+        }
+        deblock_val();
+    }
+
+
+</script>
+
