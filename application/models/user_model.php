@@ -7,7 +7,7 @@ Class User_model extends CI_Model
         $this->db->select('*');
         $this->db->from('user');
         $this->db->where('mail', $mail);
-        $this->db->where('pwd', MD5($pwd));
+        $this->db->where('pwd', MD5($pwd)); //indice : on peut utiliser la fonction MD5 pour crypter
         $this->db->limit(1);
 
         $query = $this->db->get();
