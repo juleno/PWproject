@@ -1,7 +1,7 @@
 <div class="top">
     <div class="row">
         <div class="col-md-8">
-            <pre><code class="java"><?php echo $file['content']; ?></code></pre>
+            <pre><code><?php echo $file['content']; ?></code></pre>
         </div>
         <div class="col-md-4">
             <br>
