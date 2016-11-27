@@ -40,6 +40,25 @@ Class User_model extends CI_Model
         $query = $this->db->get_where('user', array('id' => $id));
         return $query->row_array();
     }
+
+    public function mailExists($mail) {
+
+        $query = $this->db->get_where('user', array('mail' => $mail));
+        if ($query->num_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function pseudoExists($pseudo) {
+        $query = $this->db->get_where('user', array('mail' => $pseudo));
+        if ($query->num_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
 
 ?>
