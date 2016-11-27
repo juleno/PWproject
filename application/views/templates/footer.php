@@ -36,6 +36,10 @@
 <script src="<?php echo base_url(); ?>js/list.js"></script>
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <script src="<?php echo base_url(); ?>js/c3.min.js"></script>
+<script src="<?php echo base_url(); ?>js/scrollReveal.js"></script>
+<script>
+    window.sr = ScrollReveal();
+</script>
 
 
 <!--<SCRIPT LANGUAGE="JavaScript">

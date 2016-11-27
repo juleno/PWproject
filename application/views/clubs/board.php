@@ -125,12 +125,12 @@
                 if ($key == 5) {
                     break;
                 }
-                echo '<a data-toggle="tooltip" data-placement="bottom" title="' . $friend['pseudo'] . '" href="' . base_url() . 'user/' . $friend['pseudo'] . '" alt="' . $friend['pseudo'] . '"><img src="' . $friend['profilpic'] . '" alt="' . $friend['pseudo'] . '" class="img-circle" height="40px" width="40px"></a>&nbsp;';
+                echo '<a data-toggle="tooltip" data-placement="bottom" title="' . $friend['pseudo'] . '" href="' . base_url() . 'user/' . $friend['pseudo'] . '" alt="' . $friend['pseudo'] . '"><img src="' . $friend['profilpic'] . '" alt="' . $friend['pseudo'] . '" class="img-circle" height="38px" width="38px"></a>&nbsp;';
             }
             ?>
             <a href="#" data-toggle="modal" data-target="#listFriends"><img
-                    src="<?php echo base_url() ?>img/morefriends.png" alt="Voir plus" class="img-circle" height="40px"
-                    width="40px"></a><br><br>
+                    src="<?php echo base_url() ?>img/morefriends.png" alt="Voir plus" class="img-circle" height="38px"
+                    width="38px"></a><br><br>
 
             <!-- Modal -->
             <div class="modal fade" id="listFriends" tabindex="-1" role="dialog" aria-labelledby="listClubsModalLabel">

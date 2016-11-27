@@ -33,10 +33,18 @@
                     <li>
                         <a href="<?php echo base_url(); ?>club">Board</a>
                     </li>
-                    <li>
-                        <a href="<?php echo base_url(); ?>user/<?php echo $login['pseudo'] ?>"><?php echo $login['pseudo'] ?></a>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                           aria-expanded="false">
+                            <?php echo $login['pseudo'] ?> <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="<?php echo base_url(); ?>user/<?php echo $login['pseudo'] ?>">Profil</a></li>
+                            <li><a href="#">Paramètres</a></li>
+                            <li><a href="<?php echo base_url(); ?>VerifyLogin/logout">Déconnexion</a></li>
+                        </ul>
                     </li>
-                    <li><a href="<?php echo base_url(); ?>VerifyLogin/logout">Déconnexion</a></li>
+
                 </ul>
                 <div id="notifcenter" class="hide">
                     <div class="notifcenter">
