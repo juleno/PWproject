@@ -12,7 +12,7 @@
     <meta name="theme-color" content="#3e3f3a">
     <!-- Bootstrap -->
     <link href="<?php echo base_url(); ?>css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?php echo base_url(); ?>css/monokai.css" rel="stylesheet">
+    <link href="<?php echo base_url(); ?>css/prism.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>css/dropzone.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>css/c3.min.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>css/style.css" rel="stylesheet">

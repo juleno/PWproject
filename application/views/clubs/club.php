@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-8">
             <div class="well">
-                <p class="lead">Club crée par le <?php echo date("d/m/Y", $club['clubdate']) ?></p>
+                <p class="lead">Club crée le <?php echo date("d/m/Y", $club['clubdate']) ?></p>
                 <em>
                     <?php echo $club['desc'] ?>
                 </em><br><br><h4><?php echo $club['strlabel'] ?></h4><br>

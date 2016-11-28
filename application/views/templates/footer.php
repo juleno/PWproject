@@ -18,9 +18,11 @@
     </div>-->
     <div class="footer-bottom">
         <br>
-        <center><a href="<?php echo base_url() ?>legal">Mentions Légales</a> &nbsp;&bull;&nbsp; <a
-                href="<?php echo base_url() ?>about">A
-                propos</a></br></br>Copyright &copy; <?php echo date('Y'); ?> - Tous droits réservés
+        <center>
+            Copyright &copy; <?php echo date('Y'); ?> - Tous droits réservés <br>
+            <small><a href="<?php echo base_url() ?>legal">Mentions Légales</a> &nbsp;&bull;&nbsp; <a
+                    href="<?php echo base_url() ?>about">A
+                    propos</a></small>
         </center>
         <br>
     </div>
@@ -30,7 +32,7 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.7.0/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <script src="<?php echo base_url(); ?>js/dropzone.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="<?php echo base_url(); ?>js/prism.js"></script>
 <script src="//select2.github.io/select2/select2-3.4.1/select2.js"></script>
 <script src="<?php echo base_url(); ?>js/bootstrap.min.js"></script>
 <script src="<?php echo base_url(); ?>js/list.js"></script>

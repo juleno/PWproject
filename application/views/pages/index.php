@@ -23,9 +23,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
         <div class="col-md-8">
             <h1>Créez votre club</h1>
-            <h3>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-                condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis
-                euismod. Donec sed odio dui. </h3>
+            <h3>Qu'il soit public ou privé, créez votre club et invitez-y vos amis/collègues/camarades et commencez à
+                échanger.</h3>
         </div>
     </div>
     <br>
@@ -34,9 +33,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="row" data-sr="enter bottom after 2.15s over 1s">
         <div class="col-md-8">
             <h1>Partagez vos fichiers</h1>
-            <h3>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-                condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis
-                euismod. Donec sed odio dui. </h3>
+            <h3>Publiez votre code dans un club, ce dernier sera affiché avec une coloration syntaxique selon le langage
+                de programmation. Partagez également des images, fichiers compressés, pdf...</h3>
         </div>
         <div class="col-md-4">
             <img src="<?php echo base_url(); ?>img/coloration.png" alt="Coloration syntaxique"
@@ -53,9 +51,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
         <div class="col-md-8">
             <h1>Faites connaissance</h1>
-            <h3>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula
-                porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut
-                fermentum massa justo sit amet risus.</h3>
+            <h3>Rencontrez des développeurs, intégrez des clubs publics, faites des rencontres. Construisez-vous un
+                réseau professionnel avec des gens ayant les mêmes compétences que vous.</h3>
         </div>
     </div>
 </div>
