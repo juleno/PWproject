@@ -1,5 +1,5 @@
 <?php
-$title = 'Deploy ' . $_SERVER['SERVER_NAME'] . ' from GitHub';
+$title = 'Deployer sur ' . $_SERVER['SERVER_NAME'] . ' depuis GitHub';
 ?>
 <!doctype html>
 <html lang="fr">
@@ -10,6 +10,7 @@ $title = 'Deploy ' . $_SERVER['SERVER_NAME'] . ' from GitHub';
         .container {
             width: 600px;
             margin: 0 auto;
+            text-align: center;
         }
 
         .btn-wrap, h1 {
@@ -22,64 +23,44 @@ $title = 'Deploy ' . $_SERVER['SERVER_NAME'] . ' from GitHub';
         }
 
         .btn {
-            display: inline-block;
-            padding: 0.375rem 0.8125rem;
-            margin-bottom: 0;
-            font-size: 1em;
-            text-align: center;
-            vertical-align: middle;
-            cursor: pointer;
-            border: 1px solid #ccc;
-            border-radius: 0.3125rem;
-            -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+            font-family: Arial;
             color: #ffffff;
-            text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-            background-color: #51a351;
-            background-image: -moz-linear-gradient(top, #62c462, #51a351);
-            background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351));
-            background-image: -webkit-linear-gradient(top, #62c462, #51a351);
-            background-image: -o-linear-gradient(top, #62c462, #51a351);
-            background-image: linear-gradient(to bottom, #62c462, #51a351);
-            background-repeat: repeat-x;
-            border-color: #448944;
-        }
-
-        .btn:focus {
-            outline: thin dotted #333;
-            outline: 5px auto -webkit-focus-ring-color;
-            outline-offset: -2px;
-        }
-
-        .btn:hover {
+            font-size: 20px;
+            background: #ed1111;
+            padding: 10px 20px 10px 20px;
+            border: solid #101214 7px;
             text-decoration: none;
         }
 
-        .btn:active {
-            outline: 0;
-            background-image: none;
-            -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125), 0 1px 0 rgba(255, 255, 255, .1);
-            box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125), 0 1px 0 rgba(255, 255, 255, .1);
+        .btn:hover {
+            background: #0b1217;
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
 <div class="container">
     <h1><?php echo $title ?></h1>
-
+    <img src="http://media3.giphy.com/media/tXLpxypfSXvUc/giphy.gif" alt=""><br><br>
     <?php
     if (!isset($_POST['submit'])) {
         ?>
 
         <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="post">
+            <label for="pwd">code de lancement</label>
+            <input type="password" name="pwd"><br><br>
             <div class="btn-wrap">
-                <button class="btn" type="submit" name="submit">Deploy</button>
+                <button class="btn" type="submit" name="submit">Deployer</button>
             </div>
         </form>
 
         <?php
     } else {
-        echo '<pre class="output">' . shell_exec('git pull') . '</pre>';
+        if (isset($_POST['pwd']) && $_POST['pwd'] == "d4g5fyuv!fdu") {
+            echo '<pre class="output">OMG! Déploiement effectué.' . shell_exec('git pull') . '</pre>';
+        } else {
+            echo '<pre class="output">Go away fuckin hacker</pre>';
+        }
     }
     ?>
 </div>
