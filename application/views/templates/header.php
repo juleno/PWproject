@@ -45,7 +45,7 @@
                     <center><b>Nouvelle inscription</b></center>
                 </h4>
             </div>
-            <form id="form_insript" method="POST" action="inscription.php">
+            <form id="form_insript" method="POST" action="inscription">
                 <div class="modal-body">
                     <div id="pb_lastname" style="color:red;visibility:hidden;"><i>Nom incorrect</i></div>Nom <input type="text" id="lastname_form" name="lastname" onblur="verifLastName()" placeholder="Dupont"  class="form-control" required>
                     <div id="pb_firstname" style="color:red;visibility:hidden;"><i>Prenom incorrect</i></div>Prenom <input type="text" id="firstname_form" name="firstname" onblur="verifFirstName()" placeholder="Dupont" class="form-control" required>
@@ -58,7 +58,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
-                    <button type="submit" id="button_save_inscription" class="btn btn-primary" disabled="true">Enregistrer</button>
+                    <!--<button type="submit" id="button_save_inscription" class="btn btn-primary" disabled="true">Enregistrer</bu0tton>-->
+                    <button type="submit" id="button_save_inscription" class="btn btn-primary">Enregistrer</button>
                 </div>
 
             </form>
@@ -67,9 +68,9 @@
 </div>
 
 
-<!-- SCRIPT VERIF FORM INSCRIPTION -->
+<!--<!-- SCRIPT VERIF FORM INSCRIPTION -->
 
-<script type="text/javascript">
+<!--<script type="text/javascript">
 
     var valid_pseudo = false;
     var valid_lastname = false;
@@ -184,3 +185,4 @@
 
 </script>
 
+-->
