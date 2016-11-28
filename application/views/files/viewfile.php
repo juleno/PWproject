@@ -2,12 +2,14 @@
     <div class="row">
         <div class="col-md-8">
             <pre class="line-numbers" style="margin-top: -3px; margin-bottom: -42px;"><code
-                    class="language-css"><?php echo $file['content']; ?></code></pre>
+                    class="language-<?php echo $file['extensionfile']; ?>"><?php echo $file['content']; ?></code></pre>
         </div>
         <div class="col-md-4">
             <br>
             <h4><?php echo $title; ?></h4>
-            <h5>Ajouté par <?php echo $file['iduser']; ?></h5>
+            <h5>Ajouté par <a
+                    href="<?php echo base_url() ?>user/<?php echo $file['pseudo'] ?>"><?php echo $file['pseudo'] ?></a>
+            </h5>
             <div class="btn-group">
                 <a href="#" class="btn btn btn-success"><span class="glyphicon glyphicon-download-alt"></span>
                     Télécharger le fichier</a>
@@ -45,9 +47,10 @@
             </div>
 
             <br><br>
-            <h5>Détail</h5>
+            <h5><b>Détails</b></h5>
+            <p>Fichier <span class="text-uppercase"><?php echo $file['extensionfile'] ?></span></p>
             <hr>
-            <h5>Commentaires</h5>
+            <h5><b>Commentaires</b></h5>
             <hr>
         </div>
     </div>

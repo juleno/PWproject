@@ -7,7 +7,7 @@ class Club extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        $this->load->model(array('club_model', 'friend_model', 'skill_model'));
+        $this->load->model(array('club_model', 'friend_model', 'skill_model', 'publication_model', 'file_model'));
     }
 
     public function index()
@@ -67,6 +67,10 @@ class Club extends CI_Controller
         }
         $data['club']['strlabel'] = $this->skill_model->get_skill_label($data['club']['id']);
         $data['title'] = $data['club']['name'];
+        $data['publications'] = $this->publication_model->get_publi($data['club']['id']);
+        foreach ($data['publications'] as $key => $publi) {
+            $data['publications'][$key]['files'] = $this->file_model->get_file_publi($publi['id']);
+        }
 
         $this->load->view('templates/header', $data);
         $this->load->view('templates/menu', $data);

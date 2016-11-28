@@ -19,7 +19,7 @@
             <tbody class="list">
             <?php
             foreach ($files as $file) {
-                echo '<tr><td class="name"><a href ="' . base_url() . 'file/' . $club['id'] . '/' . $file['id'] . '">' . $file['name'] . '</a></td><td class="author">' . $file['iduser'] . '</td><td class="publidate">' . date('d/m/y H:i:s', $file['publidate']) . '</td></tr>';
+                echo '<tr><td class="name"><a href ="' . base_url() . 'file/' . $club['id'] . '/' . $file['id'] . '">' . $file['name'] . '</a></td><td class="author"><a href="' . base_url() . 'user/' . $file['pseudo'] . '">' . $file['pseudo'] . '</a></td><td class="publidate">' . date('d/m/y H:i:s', $file['publidate']) . '</td></tr>';
             }
             ?>
             </tbody>

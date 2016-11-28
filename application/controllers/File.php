@@ -60,4 +60,11 @@ class File extends CI_Controller
         $this->load->view('files/viewfile', $data);
         $this->load->view('templates/footer', $data);
     }
+
+    public function add()
+    {
+        $data = file_get_contents($_FILES['file']['tmp_name']);
+        $data = base64_encode($data);
+
+    }
 }

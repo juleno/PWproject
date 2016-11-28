@@ -6,15 +6,25 @@ Class File_model extends CI_Model
     {
 
         if ($idfile === FALSE) {
-            $query = $this->db->get_where('file', array('idclub' => $idclub));
+            $this->db->select('*')->from('file')->join('user', 'file.iduser = user.id')->where(array('idclub' => $idclub));
+            $query = $this->db->get();
             $result = $query->result_array();
             return $result;
         } else {
-            $query = $this->db->get_where('file', array('idclub' => $idclub, 'id' => $idfile));
+            $this->db->select('*')->from('file')->join('user', 'file.iduser = user.id')->where(array('idclub' => $idclub, 'file.id' => $idfile));
+            $query = $this->db->get();
             $result = $query->row_array();
             return $result;
         }
 
+    }
+
+    public function get_file_publi($idpubli)
+    {
+        $this->db->select('*')->from('file')->where(array('idpubli' => $idpubli));
+        $query = $this->db->get();
+        $result = $query->result_array();
+        return $result;
     }
 }
 
