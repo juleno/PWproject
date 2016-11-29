@@ -60,6 +60,18 @@ Class User_model extends CI_Model
         }
     }
 
+
+    public function insertIntoDatabase($pseudo, $mail, $pwd, $firstname, $lastname) {
+        $data = array(
+            'pseudo' => $pseudo,
+            'mail' => $mail,
+            'pwd' => MD5($pwd),
+            'firstname' => $firstname,
+            'lastname' => $lastname,
+            'inscridate' => date()
+        );
+        $this->db->insert('user', $data);
+    }
 }
 
 ?>
