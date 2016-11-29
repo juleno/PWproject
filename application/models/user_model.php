@@ -52,13 +52,14 @@ Class User_model extends CI_Model
     }
 
     public function pseudoExists($pseudo) {
-        $query = $this->db->get_where('user', array('mail' => $pseudo));
+        $query = $this->db->get_where('user', array('pseudo' => $pseudo));
         if ($query->num_rows() > 0) {
             return true;
         } else {
             return false;
         }
     }
+
 }
 
 ?>

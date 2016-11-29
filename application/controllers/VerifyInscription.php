@@ -3,10 +3,6 @@
 class VerifyInscription extends CI_Controller
 {
 
-    //TODO: charger le modèle user
-    //on peut creer un constructeur pour initier des variables globales au constructeur ou charger des models, librairies
-    //pas besoin de charger la librairie Database, elle est chargée par default dans tous les controleurs
-    //grace au fichier application/config/autoload.php
     public function __construct()
     {
         parent::__construct();
@@ -17,7 +13,10 @@ class VerifyInscription extends CI_Controller
     {
         $mail = $this->input->post('mail');
         //si mail n'est pas une adresse
-        if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+        if (!isset($mail)) {
+            $status = 1;
+            $message = 'Veuillez renseigner une adresse email.';
+        } else if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
             $status = 1;
             $message = 'Votre adresse email n\'est pas valide.';
         } //si mail existe deja en base
@@ -39,7 +38,10 @@ class VerifyInscription extends CI_Controller
     {
         $pseudo = $this->input->post('pseudo');
         //si mail n'est pas une adresse
-        if (strlen($pseudo) < 6) {
+        if (!isset($pseudo)) {
+            $status = 1;
+            $message = 'Veuillez renseigner un pseudo.';
+        } else if (strlen($pseudo) < 6) {
             $status = 1;
             $message = 'Votre pseudo comporte moins de 6 caractères';
         } //si mail existe deja en base
@@ -62,10 +64,13 @@ class VerifyInscription extends CI_Controller
     {
         $pwd = $this->input->post('pwd');
         $pwd2 = $this->input->post('pwd2');
-        if ($pwd != $pwd2) {
+        if (!isset($pwd) || !isset($pwd2)) {
+            $status = 1;
+            $message = 'Veuillez renseigner un mot de passe';
+        } else if ($pwd != $pwd2) {
             $status = 1;
             $message = 'Les deux mot de passe ne sont pas correspondants';
-        } //si mail existe deja en base
+        }
         else if (strlen($pwd) < 6) {
             $status = 1;
             $message = 'Le mot de passe doit comporter plus de 6 caractères';
@@ -81,10 +86,27 @@ class VerifyInscription extends CI_Controller
 
     public function valider()
     {
-        //TODO: valider()
-        //on récupère tous les champs cette fois ci
-        //on vérifie à nouveau que chaque champ remplit chaque conditions (sinon l'utilisateur peut faire n'importe quoi)
-        //on ajoute le tout en bdd en utilisant une fonction du modele user qui fera la requete INSERT
+        $firstname = $this->input->post('firstname');
+        $lastname = $this->input->post('lastname');
+        if (!isset($firstname) || !isset($lastname)) {
+            $verifMail = $this->verifMail();
+            $verifMail = json_decode($verifMail, true);
+            $verifPseudo = $this->verifPseudo();
+            $verifPseudo = json_decode($verifPseudo, true);
+            $verifPwd = $this->verifPwd();
+            $verifPwd = json_decode($verifPwd, true);
+            if ($verifMail['status'] == 0 && $verifPseudo['status'] == 0 && $verifPwd['status'] == 0) {
+                $this->user_model->insertIntoDatabase();
+                $status = 0;
+                $message = 'ok';
+            }
+        } else {
+            $status = 1;
+            $message = 'Veuillez remplir tous les champs.';
+        }
+        $return = array('status' => $status, 'message' => $message);
+        //on echo le json
+        echo json_encode($return);
     }
 
 }
