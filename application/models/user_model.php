@@ -68,7 +68,7 @@ Class User_model extends CI_Model
             'pwd' => MD5($pwd),
             'firstname' => $firstname,
             'lastname' => $lastname,
-            'inscridate' => date()
+            'inscridate' => time()
         );
         $this->db->insert('user', $data);
     }
