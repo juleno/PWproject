@@ -56,7 +56,7 @@ class VerifyInscription extends CI_Controller
         if (!isset($pseudo)) {
             $status = 1;
             $message = 'Veuillez renseigner un pseudo.';
-        } else if (strlen($pseudo) < 6) {
+        } else if (strlen($pseudo) < 5) {
             $status = 1;
             $message = 'Votre pseudo comporte moins de 6 caractères';
         } //si mail existe deja en base
@@ -86,7 +86,7 @@ class VerifyInscription extends CI_Controller
             $status = 1;
             $message = 'Les deux mot de passe ne sont pas correspondants';
         }
-        else if (strlen($pwd) < 6) {
+        else if (strlen($pwd) < 5) {
             $status = 1;
             $message = 'Le mot de passe doit comporter plus de 6 caractères';
         } else {

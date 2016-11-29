@@ -98,7 +98,7 @@
                 url: '<?php echo base_url() ?>VerifyLogin',
                 data: dataString,
                 success: function (data) {
-                    var responseData = jQuery.parseJSON(data)
+                    var responseData = jQuery.parseJSON(data);
                     if (responseData.status == 1) {
                         $('.textlog').fadeIn();
                         // $('.textlog').text(responseData.message);
@@ -114,6 +114,32 @@
         //INSCRIPTION
 
 
+        $('#email_form').focusout(function() {
+            console.log('yo');
+            var email = document.getElementById("email_form").value;
+            var dataMail = 'mail=' + email;
+
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo base_url() ?>VerifyInscription/echoVerifMail',
+                data: dataMail,
+                success: function (data) {
+                    var responseData = jQuery.parseJSON(data);
+                    if (responseData.status == 1) {
+                        document.getElementById("email_form").style.border = "2px solid red";
+                        document.getElementById("pb_email").textContent = responseData.message;
+                        document.getElementById("pb_email").style.visibility = "visible";
+                        valid_email = false;
+                    }
+                    else {
+                        document.getElementById("email_form").style.border = "2px solid green";
+                        document.getElementById("pb_email").style.visibility = "hidden";
+                        valid_email = true;
+                    }
+                }
+            });
+            return false;
+        });
 
         refreshActivities();
         refreshNotifs();
@@ -152,6 +178,9 @@
         ?>
 
     });
+
+
+
 
 
 
