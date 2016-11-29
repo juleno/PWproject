@@ -39,6 +39,16 @@ class VerifyInscription extends CI_Controller
         echo $this->pwdExist();
     }
 
+    public function echoDeblock()
+    {
+        echo $this->deblock_val();
+    }
+
+    public function echoValider()
+    {
+        echo $this->valider();
+    }
+
 
     public function firstNameExist() {
         $firstname = $this->input->post('firstname');
@@ -67,7 +77,7 @@ class VerifyInscription extends CI_Controller
     }
 
     public function pwdExist() {
-        $pwd = $this->input->post('pwd_form');
+        $pwd = $this->input->post('pwd');
         if (strlen($pwd) < 5) {
             $status = 1;
             $message = 'Le mot de passe doit comporter au moins 6 caractères';
@@ -152,6 +162,19 @@ class VerifyInscription extends CI_Controller
         return json_encode($return);
     }
 
+    function deblock_val() {
+        if (valid_pseudo && valid_lastname && valid_firstname && valid_email && valid_pwd && valid_pwd1) {
+            $status = 0;
+            $message = 'ok';
+            /*document.getElementById("button_save_inscription").disabled == false;*/
+        } else {
+            $status = 1;
+            $message = 'Impossible de débloquer, champs non remplis';
+        }
+        $return = array('status' => $status, 'message' => $message);
+        return json_encode($return);
+    }
+
     public function valider()
     {
         $mail = $this->input->post('mail');
@@ -180,7 +203,7 @@ class VerifyInscription extends CI_Controller
         }
         $return = array('status' => $status, 'message' => $message);
         //on echo le json
-        echo json_encode($return);
+        return json_encode($return);
     }
 
 }

@@ -232,10 +232,11 @@
         });
 
 
+        //INSCRIPTION - Verif pwd (1)
+
 
         $('#pwd_form').focusout(function() {
             var pwd = document.getElementById("pwd_form").value;
-            console.dir(pwd);
             var dataPwd = 'pwd=' + pwd;
 
             $.ajax({
@@ -260,50 +261,78 @@
             return false;
         });
 
+        //INSCRIPTION - Verif pwd2
 
 
+        $('#pwd2_form').keyup(function() {
+            var pwd = document.getElementById("pwd_form").value;
+            var pwd2 = document.getElementById("pwd2_form").value;
+            var dataPwd = 'pwd=' + pwd;
+            var dataPwd2 = '&pwd2=' + pwd2;
+            var dataPassword = dataPwd + dataPwd2;
+
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo base_url() ?>VerifyInscription/echoVerifPwd',
+                data: dataPassword,
+                success: function (data) {
+                    var responseData = jQuery.parseJSON(data);
+                    if (responseData.status == 1) {
+                        document.getElementById("pwd2_form").style.border = "2px solid red";
+                        document.getElementById("pb_pwd2").textContent = responseData.message;
+                        document.getElementById("pb_pwd2").style.visibility = "visible";
+                        valid_pwd2 = false;
+                    }
+                    else {
+                        document.getElementById("pwd2_form").style.border = "2px solid green";
+                        document.getElementById("pb_pwd2").style.visibility = "hidden";
+                        valid_pwd2 = true;
+                    }
+                }
+            });
+            return false;
+        });
 
 
+        //TODO : Débloquer bouton si champ tous ok (pour le moment le "disabled" a été supprimé du form d'inscription)
 
 
+        //TODO Envoi du formulaire - Test en dessous, ne fonctionne pas
 
+        $('#form_insript').submit(function () {
 
+            var pseudo = document.getElementById("pseudo_form").value;
+            var firstname = document.getElementById("firstname_form").value;
+            var lastname = document.getElementById("lastname_form").value;
+            var email = document.getElementById("email_form").value;
+            var pwd = document.getElementById("pwd_form").value;
+            var pwd2 = document.getElementById("pwd2_form").value;
 
+            var dataPseudo = 'pseudo=' + pseudo;
+            var dataLastname = '&lastname=' + lastname;
+            var dataFirstname = '&firstname=' + firstname;
+            var dataEmail = '&email=' + email;
+            var dataPwd = '&pwd=' + pwd;
+            var dataPwd1 = '&pwd1=' + pwd2;
 
+            var dataAll = dataPseudo + dataLastname + dataFirstname + dataEmail + dataPwd + dataPwd1 + dataButton;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo base_url() ?>VerifyInscription/valider',
+                data: dataAll,
+                success: function (data) {
+                    var responseData = jQuery.parseJSON(data);
+                    if (responseData.status == 1) {
+                        console_dir('oula');
+                    }
+                    else {
+                        console_dir('impec !');
+                    }
+                }
+            });
+            return false;
+        });
 
 
 
