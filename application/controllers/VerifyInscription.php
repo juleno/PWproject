@@ -24,6 +24,61 @@ class VerifyInscription extends CI_Controller
         echo $this->verifPwd();
     }
 
+    public function echoFirstnameExist()
+    {
+        echo $this->firstNameExist();
+    }
+
+    public function echoLastnameExist()
+    {
+        echo $this->lastNameExist();
+    }
+
+    public function echoPwdExist()
+    {
+        echo $this->pwdExist();
+    }
+
+
+    public function firstNameExist() {
+        $firstname = $this->input->post('firstname');
+        if(strlen($firstname) > 1) {
+            $status = 0;
+            $message = 'ok';
+        } else {
+            $status = 1;
+            $message = 'Veuillez renseigner un nom valide';
+        }
+        $return = array('status' => $status, 'message' => $message);
+        return json_encode($return);
+    }
+
+    public function lastNameExist() {
+        $lastname = $this->input->post('lastname');
+        if(strlen($lastname) > 1) {
+            $status = 0;
+            $message = 'ok';
+        } else {
+            $status = 1;
+            $message = 'Veuillez renseigner un prenom valide';
+        }
+        $return = array('status' => $status, 'message' => $message);
+        return json_encode($return);
+    }
+
+    public function pwdExist() {
+        $pwd = $this->input->post('pwd_form');
+        if (strlen($pwd) < 5) {
+            $status = 1;
+            $message = 'Le mot de passe doit comporter au moins 6 caractères';
+        } else {
+            $status = 0;
+            $message = 'ok';
+        }
+        $return = array('status' => $status, 'message' => $message);
+        return json_encode($return);
+    }
+
     public function verifMail()
     {
         $mail = $this->input->post('mail');
@@ -36,7 +91,6 @@ class VerifyInscription extends CI_Controller
             $message = 'Votre adresse email n\'est pas valide.';
         } //si mail existe deja en base
         else if ($this->user_model->mailExists($mail)) {
-            //TODO: créer la fonction mailExists dans le user_model
             $status = 1;
             $message = 'Cette adresse email est déjà enregistrée.';
         } else {
@@ -56,12 +110,11 @@ class VerifyInscription extends CI_Controller
         if (!isset($pseudo)) {
             $status = 1;
             $message = 'Veuillez renseigner un pseudo.';
-        } else if (strlen($pseudo) < 6) {
+        } else if (strlen($pseudo) < 5) {
             $status = 1;
             $message = 'Votre pseudo comporte moins de 6 caractères';
         } //si mail existe deja en base
-        else if ($this->user_model->mailExists($pseudo)) {
-            //TODO: créer la fonction pseudoExists dans le user_model
+        else if ($this->user_model->pseudoExists($pseudo)) {
             $status = 1;
             $message = 'Ce pseudo est déjà attribué';
         } else {
@@ -86,7 +139,7 @@ class VerifyInscription extends CI_Controller
             $status = 1;
             $message = 'Les deux mot de passe ne sont pas correspondants';
         }
-        else if (strlen($pwd) < 6) {
+        else if (strlen($pwd) < 5) {
             $status = 1;
             $message = 'Le mot de passe doit comporter plus de 6 caractères';
         } else {

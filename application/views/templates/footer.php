@@ -98,7 +98,7 @@
                 url: '<?php echo base_url() ?>VerifyLogin',
                 data: dataString,
                 success: function (data) {
-                    var responseData = jQuery.parseJSON(data)
+                    var responseData = jQuery.parseJSON(data);
                     if (responseData.status == 1) {
                         $('.textlog').fadeIn();
                         // $('.textlog').text(responseData.message);
@@ -112,6 +112,203 @@
         });
 
         //INSCRIPTION
+
+        //INSCRIPTION - Verif email
+
+
+        $('#email_form').focusout(function() {
+            var email = document.getElementById("email_form").value;
+            var dataMail = 'mail=' + email;
+
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo base_url() ?>VerifyInscription/echoVerifMail',
+                data: dataMail,
+                success: function (data) {
+                    var responseData = jQuery.parseJSON(data);
+                    if (responseData.status == 1) {
+                        document.getElementById("email_form").style.border = "2px solid red";
+                        document.getElementById("pb_email").textContent = responseData.message;
+                        document.getElementById("pb_email").style.visibility = "visible";
+                        valid_email = false;
+                    }
+                    else {
+                        document.getElementById("email_form").style.border = "2px solid green";
+                        document.getElementById("pb_email").style.visibility = "hidden";
+                        valid_email = true;
+                    }
+                }
+            });
+            return false;
+        });
+
+
+        //INSCRIPTION - Verif pseudo
+
+        $('#pseudo_form').focusout(function() {
+            var pseudo = document.getElementById("pseudo_form").value;
+            var dataPseudo = 'pseudo=' + pseudo;
+
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo base_url() ?>VerifyInscription/echoVerifPseudo',
+                data: dataPseudo,
+                success: function (data) {
+                    var responseData = jQuery.parseJSON(data);
+                    if (responseData.status == 1) {
+                        document.getElementById("pseudo_form").style.border = "2px solid red";
+                        document.getElementById("pb_pseudo").textContent = responseData.message;
+                        document.getElementById("pb_pseudo").style.visibility = "visible";
+                        valid_pseudo = false;
+                    }
+                    else {
+                        document.getElementById("pseudo_form").style.border = "2px solid green";
+                        document.getElementById("pb_pseudo").style.visibility = "hidden";
+                        valid_pseudo = true;
+                    }
+                }
+            });
+            return false;
+        });
+
+
+
+        //INSCRIPTION - Verif firstname
+
+        $('#firstname_form').focusout(function() {
+            var firstname = document.getElementById("firstname_form").value;
+            var dataFirstname = 'firstname=' + firstname;
+
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo base_url() ?>VerifyInscription/echoFirstnameExist',
+                data: dataFirstname,
+                success: function (data) {
+                    var responseData = jQuery.parseJSON(data);
+                    if (responseData.status == 1) {
+                        document.getElementById("firstname_form").style.border = "2px solid red";
+                        document.getElementById("pb_firstname").textContent = responseData.message;
+                        document.getElementById("pb_firstname").style.visibility = "visible";
+                        valid_firstname = false;
+                    }
+                    else {
+                        document.getElementById("firstname_form").style.border = "2px solid green";
+                        document.getElementById("pb_firstname").style.visibility = "hidden";
+                        valid_firstname = true;
+                    }
+                }
+            });
+            return false;
+        });
+
+
+
+        //INSCRIPTION - Verif lastname
+
+        $('#lastname_form').focusout(function() {
+            var lastname = document.getElementById("lastname_form").value;
+            var dataLastname = 'lastname=' + lastname;
+
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo base_url() ?>VerifyInscription/echoLastnameExist',
+                data: dataLastname,
+                success: function (data) {
+                    var responseData = jQuery.parseJSON(data);
+                    if (responseData.status == 1) {
+                        document.getElementById("lastname_form").style.border = "2px solid red";
+                        document.getElementById("pb_lastname").textContent = responseData.message;
+                        document.getElementById("pb_lastname").style.visibility = "visible";
+                        valid_lastname = false;
+                    }
+                    else {
+                        document.getElementById("lastname_form").style.border = "2px solid green";
+                        document.getElementById("pb_lastname").style.visibility = "hidden";
+                        valid_lastname = true;
+                    }
+                }
+            });
+            return false;
+        });
+
+
+
+        $('#pwd_form').focusout(function() {
+            var pwd = document.getElementById("pwd_form").value;
+            console.dir(pwd);
+            var dataPwd = 'pwd=' + pwd;
+
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo base_url() ?>VerifyInscription/echoPwdExist',
+                data: dataPwd,
+                success: function (data) {
+                    var responseData = jQuery.parseJSON(data);
+                    if (responseData.status == 1) {
+                        document.getElementById("pwd_form").style.border = "2px solid red";
+                        document.getElementById("pb_pwd").textContent = responseData.message;
+                        document.getElementById("pb_pwd").style.visibility = "visible";
+                        valid_pwd = false;
+                    }
+                    else {
+                        document.getElementById("pwd_form").style.border = "2px solid green";
+                        document.getElementById("pb_pwd").style.visibility = "hidden";
+                        valid_pwd = true;
+                    }
+                }
+            });
+            return false;
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -152,9 +349,6 @@
         ?>
 
     });
-
-
-
 
 
     <?php
