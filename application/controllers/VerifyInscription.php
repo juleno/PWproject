@@ -9,6 +9,21 @@ class VerifyInscription extends CI_Controller
         $this->load->model('user_model');
     }
 
+    public function echoVerifMail()
+    {
+        echo $this->verifMail();
+    }
+
+    public function echoVerifPseudo()
+    {
+        echo $this->verifPseudo();
+    }
+
+    public function echoVerifPwd()
+    {
+        echo $this->verifPwd();
+    }
+
     public function verifMail()
     {
         $mail = $this->input->post('mail');
@@ -31,7 +46,7 @@ class VerifyInscription extends CI_Controller
         //on creer une array contenant le status et le message
         $return = array('status' => $status, 'message' => $message);
         //on echo le json
-        echo json_encode($return);
+        return json_encode($return);
     }
 
     public function verifPseudo()
@@ -56,7 +71,7 @@ class VerifyInscription extends CI_Controller
         //on creer une array contenant le status et le message
         $return = array('status' => $status, 'message' => $message);
         //on echo le json
-        echo json_encode($return);
+        return json_encode($return);
 
     }
 
@@ -81,14 +96,17 @@ class VerifyInscription extends CI_Controller
         //on creer une array contenant le status et le message
         $return = array('status' => $status, 'message' => $message);
         //on echo le json
-        echo json_encode($return);
+        return json_encode($return);
     }
 
     public function valider()
     {
+        $mail = $this->input->post('mail');
+        $pseudo = $this->input->post('pseudo');
         $firstname = $this->input->post('firstname');
         $lastname = $this->input->post('lastname');
-        if (!isset($firstname) || !isset($lastname)) {
+        $pwd = $this->input->post('pwd');
+        if (isset($firstname) && isset($lastname)) {
             $verifMail = $this->verifMail();
             $verifMail = json_decode($verifMail, true);
             $verifPseudo = $this->verifPseudo();
@@ -96,9 +114,12 @@ class VerifyInscription extends CI_Controller
             $verifPwd = $this->verifPwd();
             $verifPwd = json_decode($verifPwd, true);
             if ($verifMail['status'] == 0 && $verifPseudo['status'] == 0 && $verifPwd['status'] == 0) {
-                $this->user_model->insertIntoDatabase();
+                $this->user_model->insertIntoDatabase($pseudo, $mail, $pwd, $firstname, $lastname);
                 $status = 0;
                 $message = 'ok';
+            } else {
+                $status = 1;
+                $message = 'WTF OMG';
             }
         } else {
             $status = 1;
