@@ -53,6 +53,7 @@ $route['default_controller'] = 'pages/view';
 $route['about'] = 'pages/view/about';
 $route['legal'] = 'pages/view/legal';
 $route['oubli'] = 'pages/view/oubli';
+$route['validmailsent'] = 'pages/view/validmailsent';
 $route['inscription'] = 'pages/view/inscription';
 $route['mailing'] = 'pages/view/mailing';
 $route['club/explore'] = 'club/explore';

@@ -115,6 +115,12 @@
 
         //INSCRIPTION - Verif email
 
+        var valid_email = false;
+        var valid_firstname = false;
+        var valid_lastname = false;
+        var valid_pseudo = false;
+        var valid_pwd = false;
+        var valid_pwd2 = false;
 
         $('#email_form').focusout(function() {
             var email = document.getElementById("email_form").value;
@@ -136,10 +142,10 @@
                         document.getElementById("email_form").style.border = "2px solid green";
                         document.getElementById("pb_email").style.visibility = "hidden";
                         valid_email = true;
+                        activeBtn();
                     }
                 }
             });
-            return false;
         });
 
 
@@ -165,10 +171,10 @@
                         document.getElementById("pseudo_form").style.border = "2px solid green";
                         document.getElementById("pb_pseudo").style.visibility = "hidden";
                         valid_pseudo = true;
+                        activeBtn();
                     }
                 }
             });
-            return false;
         });
 
 
@@ -195,10 +201,10 @@
                         document.getElementById("firstname_form").style.border = "2px solid green";
                         document.getElementById("pb_firstname").style.visibility = "hidden";
                         valid_firstname = true;
+                        activeBtn();
                     }
                 }
             });
-            return false;
         });
 
 
@@ -225,10 +231,10 @@
                         document.getElementById("lastname_form").style.border = "2px solid green";
                         document.getElementById("pb_lastname").style.visibility = "hidden";
                         valid_lastname = true;
+                        activeBtn();
                     }
                 }
             });
-            return false;
         });
 
 
@@ -255,14 +261,13 @@
                         document.getElementById("pwd_form").style.border = "2px solid green";
                         document.getElementById("pb_pwd").style.visibility = "hidden";
                         valid_pwd = true;
+                        activeBtn();
                     }
                 }
             });
-            return false;
         });
 
         //INSCRIPTION - Verif pwd2
-
 
         $('#pwd2_form').keyup(function() {
             var pwd = document.getElementById("pwd_form").value;
@@ -287,10 +292,10 @@
                         document.getElementById("pwd2_form").style.border = "2px solid green";
                         document.getElementById("pb_pwd2").style.visibility = "hidden";
                         valid_pwd2 = true;
+                        activeBtn();
                     }
                 }
             });
-            return false;
         });
 
 
@@ -311,11 +316,11 @@
             var dataPseudo = 'pseudo=' + pseudo;
             var dataLastname = '&lastname=' + lastname;
             var dataFirstname = '&firstname=' + firstname;
-            var dataEmail = '&email=' + email;
+            var dataEmail = '&mail=' + email;
             var dataPwd = '&pwd=' + pwd;
-            var dataPwd1 = '&pwd1=' + pwd2;
+            var dataPwd2 = '&pwd2=' + pwd2;
 
-            var dataAll = dataPseudo + dataLastname + dataFirstname + dataEmail + dataPwd + dataPwd1 + dataButton;
+            var dataAll = dataPseudo + dataLastname + dataFirstname + dataEmail + dataPwd + dataPwd2;
 
             $.ajax({
                 type: 'POST',
@@ -324,15 +329,23 @@
                 success: function (data) {
                     var responseData = jQuery.parseJSON(data);
                     if (responseData.status == 1) {
-                        console_dir('oula');
+                        console.log('oula');
                     }
                     else {
-                        console_dir('impec !');
+                        window.location = "<?php echo base_url(); ?>validmailsent";
                     }
                 }
             });
             return false;
         });
+
+        function activeBtn() {
+            if (valid_email == true && valid_firstname == true && valid_lastname == true && valid_pseudo == true && valid_pwd == true && valid_pwd2 == true) {
+                document.getElementById("button_save_inscription").classList.remove("disabled");
+            } else {
+                document.getElementById("button_save_inscription").classList.add("disabled");
+            }
+        }
 
 
 

@@ -203,7 +203,8 @@ class VerifyInscription extends CI_Controller
         }
         $return = array('status' => $status, 'message' => $message);
         //on echo le json
-        return json_encode($return);
+        // return json_encode($return);
+        echo json_encode($return);
     }
 
 }

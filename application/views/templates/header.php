@@ -47,17 +47,34 @@
             </div>
             <form id="form_insript">
                 <div class="modal-body">
-                    Nom <input type="text" id="firstname_form" name="firstname" placeholder="Dupont"  class="form-control" required><div id="pb_firstname" style="color:red;visibility:hidden;"><i></i></div>
-                    Prenom <input type="text" id="lastname_form" name="lastname" placeholder="Dupont" class="form-control" required><div id="pb_lastname" style="color:red;visibility:hidden;"><i></i></div>
-                    Email<input type="email" id="email_form" name="email" placeholder="dupont.dupont@dupont.fr" class="form-control" required><div id="pb_email" style="color:red;visibility:hidden;"><i></i></div>
-                    Pseudo (6 carac. min)<input type="text" id="pseudo_form" name="pseudo" placeholder="dupont35000" class="form-control" required><div id="pb_pseudo" style="color:red;visibility:hidden;"><i></i></div>
-                    Mot de passe<input type="password" id="pwd_form" name="password" class="form-control" required><div id="pb_pwd" style="color:red;visibility:hidden;"><i></i></div>
-                    Confirmation mot de passe<input type="password" id="pwd2_form" name="confirmepassword" class="form-control" required><div id="pb_pwd2" style="color:red;visibility:hidden;"><i></i></div><br>
+                    Nom <input type="text" id="firstname_form" name="firstname" placeholder="Dupont"
+                               class="form-control" required>
+                    <small id="pb_firstname" style="color:red;visibility:hidden;"><i></i></small>
+                    <br>
+                    Prenom <input type="text" id="lastname_form" name="lastname" placeholder="Dupont"
+                                  class="form-control" required>
+                    <small id="pb_lastname" style="color:red;visibility:hidden;"><i></i></small>
+                    <br>
+                    Email<input type="email" id="email_form" name="email" placeholder="dupont.dupont@dupont.fr"
+                                class="form-control" required>
+                    <small id="pb_email" style="color:red;visibility:hidden;"><i></i></small>
+                    <br>
+                    Pseudo (6 carac. min)<input type="text" id="pseudo_form" name="pseudo" placeholder="dupont35000"
+                                                class="form-control" required>
+                    <small id="pb_pseudo" style="color:red;visibility:hidden;"><i></i></small>
+                    <br>
+                    Mot de passe<input type="password" id="pwd_form" name="password" class="form-control" required>
+                    <small id="pb_pwd" style="color:red;visibility:hidden;"><i></i></small>
+                    <br>
+                    Confirmation mot de passe<input type="password" id="pwd2_form" name="confirmepassword"
+                                                    class="form-control" required>
+                    <small id="pb_pwd2" style="color:red;visibility:hidden;"><i></i></small>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
                     <!--<button type="submit" id="button_save_inscription" class="btn btn-primary" disabled="true">Enregistrer</bu0tton>-->
-                    <button type="submit" id="button_save_inscription" class="btn btn-primary">Enregistrer</button>
+                    <button type="submit" id="button_save_inscription" class="btn btn-primary disabled">Enregistrer
+                    </button>
                 </div>
 
             </form>

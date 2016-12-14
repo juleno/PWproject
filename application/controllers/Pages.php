@@ -15,7 +15,9 @@ class Pages extends CI_Controller
             $data['login'] = $this->session->userdata('login');
         }
         $data['title'] = ucfirst($page); // Capitalize the first letter
-
+        if ($page == 'validmailsent') {
+            $data['title'] = 'Email de confirmation envoyé !';
+        }
         $this->load->view('templates/header', $data);
         $this->load->view('templates/menu', $data);
         $this->load->view('pages/' . $page, $data);
