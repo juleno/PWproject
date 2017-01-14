@@ -91,7 +91,6 @@
             var dataMail = 'mail=' + mail;
             var dataPwd = '&pwd=' + pwd;
             var dataString = dataMail + dataPwd;
-            console.log('yo');
 
             $.ajax({
                 type: 'POST',
@@ -299,11 +298,6 @@
         });
 
 
-        //TODO : Débloquer bouton si champ tous ok (pour le moment le "disabled" a été supprimé du form d'inscription)
-
-
-        //TODO Envoi du formulaire - Test en dessous, ne fonctionne pas
-
         $('#form_insript').submit(function () {
 
             var pseudo = document.getElementById("pseudo_form").value;
@@ -348,6 +342,36 @@
         }
 
 
+        //Nouveau club
+
+        $('#form_add_club').submit(function () {
+
+            var statut = document.getElementById("statut").value;
+            var name = document.getElementById("name").value;
+            var desc = document.getElementById("desc").value;
+
+            var dataStatut = 'statut=' + statut;
+            var dataName= '&name=' + name;
+            var dataDesc = '&desc=' + desc;
+
+            var dataAll = dataStatut + dataName + dataDesc;
+
+            $.ajax({
+                type: 'POST',
+                url: '<?php echo base_url() ?>VerifyClub/valider',
+                data: dataAll,
+                success: function (data) {
+                    var responseData = jQuery.parseJSON(data);
+                    if (responseData.status == 1) {
+                        console.log('oulalala');
+                    }
+                    else {
+                        window.location = "<?php echo base_url(); ?>validmailsent";
+                    }
+                }
+            });
+            return false;
+        });
 
 
 

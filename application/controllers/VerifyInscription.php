@@ -193,9 +193,10 @@ class VerifyInscription extends CI_Controller
                 $this->user_model->insertIntoDatabase($pseudo, $mail, $pwd, $firstname, $lastname);
                 $status = 0;
                 $message = 'ok';
+
             } else {
                 $status = 1;
-                $message = 'WTF OMG';
+                $message = 'bug';
             }
         } else {
             $status = 1;

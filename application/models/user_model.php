@@ -60,7 +60,6 @@ Class User_model extends CI_Model
         }
     }
 
-
     public function insertIntoDatabase($pseudo, $mail, $pwd, $firstname, $lastname) {
         $data = array(
             'pseudo' => $pseudo,

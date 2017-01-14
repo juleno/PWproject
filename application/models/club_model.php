@@ -69,6 +69,33 @@ Class Club_model extends CI_Model
         }
         return 2;
     }
+
+    public function add_club($name, $iduser, $desc,$public) {
+        $data = array(
+            'id' => '',
+            'name' => $name,
+            'iduser' => '',
+            'desc' =>$desc,
+            'clubpic' => '',
+            'clubdate' => time(),
+            'ispublic' => $public,
+            'lastactivity' => ''
+        );
+        $this->db->insert('club', $data);
+    }
+
+    public function clubExists($name) {
+        $query = $this->db->get_where('club', array('name' => $name));
+        if ($query->num_rows() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function add_skills_to_club($idskill, $idclub) {
+
+    }
 }
 
 ?>

@@ -34,18 +34,19 @@
                             <h4 class="modal-title" id="myModalLabel"><center><b>Création d'un nouveau club</b></center></h4>
                         </div>
                         <div class="modal-body">
-                            <form method="POST" action="newclub.php">
+                            <!-- <form method="POST" action="newclub.php">  -->
+                            <form id="form_add_club">
                                 <div class="form-group">
 
                                     <center>
                                         <div class="btn-group btn-group-sm" data-toggle="buttons">
                                             <label class="btn btn-primary active">
-                                                <input type="radio" name="statut" id="statutPublic" value="1"
+                                                <input type="radio" name="statut" id="statut" value="1"
                                                        autocomplete="off" checked><span
                                                     class=" glyphicon glyphicon-globe"></span> Club public
                                             </label>
                                             <label class="btn btn-primary">
-                                                <input type="radio" name="statut" id="statutPrive" value="0"
+                                                <input type="radio" name="statut" id="statut" value="0"
                                                        autocomplete="off"><span class="glyphicon glyphicon-lock"></span>
                                                 Club privé
                                             </label>
@@ -57,7 +58,7 @@
                                     <input type="text" class="form-control" name="name" id="name" required><br>
 
                                     <label for="comment">Description (500 carac. max):</label>
-                                    <textarea class="form-control" rows="7" id="comment" name="desc" maxlength="500" required></textarea><br>
+                                    <textarea class="form-control" rows="7" id="desc" name="desc" maxlength="500" required></textarea><br>
 
                                     <label for="name">Compétences requises:</label>
                                     <div class="row">
